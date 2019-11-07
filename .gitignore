@@ -1,0 +1,13 @@
+*.tmp
+~$*.doc*
+~$*.xls*
+~$*.ppt*
+*.~vsd*
+*.user
+
+bin/
+obj/
+
+.vs
+
+
