@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DisassemblyDiagnoser Output Asynchronic.BenchmarkTest-20191103-225348</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: left; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<table>
+<thead>
+<tr><th colspan="4">Asynchronic.BenchmarkTest-20191103-225348</th></tr>
+<tr>
+<th>PlaneUsage .NET Core 2.2.2 (CoreCLR 4.6.27317.07, CoreFX 4.6.27318.02), X64 RyuJIT</th>
+<th>ExecuteOnThreadPool .NET Core 2.2.2 (CoreCLR 4.6.27317.07, CoreFX 4.6.27318.02), X64 RyuJIT</th>
+<th>ExecuteOnTask .NET Core 2.2.2 (CoreCLR 4.6.27317.07, CoreFX 4.6.27318.02), X64 RyuJIT</th>
+<th>ExecuteOnThread .NET Core 2.2.2 (CoreCLR 4.6.27317.07, CoreFX 4.6.27318.02), X64 RyuJIT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top;"><pre><code>
+000007fe`57c337e0 Asynchronic.BenchmarkTest.PlaneUsage()
+000007fe`57c337e0 b804000000      mov     eax,4
+000007fe`57c337e5 c3              ret
+000007fe`57c337e6 0000            add     byte ptr [rax],al
+000007fe`57c337e8 1900            sbb     dword ptr [rax],eax
+000007fe`57c337ea 0000            add     byte ptr [rax],al
+000007fe`57c337ec 400000          add     byte ptr [rax],al
+000007fe`57c337ef 0000            add     byte ptr [rax],al
+000007fe`57c337f1 0000            add     byte ptr [rax],al
+000007fe`57c337f3 0000            add     byte ptr [rax],al
+000007fe`57c337f5 0000            add     byte ptr [rax],al
+000007fe`57c337f7 0028            add     byte ptr [rax],ch
+000007fe`57c337f9 62              ???
+000007fe`57c337fa d7              xlat    byte ptr [rbx]
+000007fe`57c337fb 57              push    rdi
+000007fe`57c337fc fe07            inc     byte ptr [rdi]
+000007fe`57c337fe 0000            add     byte ptr [rax],al
+000007fe`57c33800 c3              ret
+000007fe`57c33801 0000            add     byte ptr [rax],al
+000007fe`57c33803 0019            add     byte ptr [rcx],bl
+
+No ILOffsetMap found
+Asynchronic.BenchmarkTest.TwoPlusTwo()
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+000007fe`57c637e0 Asynchronic.BenchmarkTest.ExecuteOnThreadPool()
+IL_0000: newobj System.Void Asynchronic.BenchmarkTest/<>c__DisplayClass1_0::.ctor()
+000007fe`57c637e6 48b9b852db57fe070000 mov rcx,7FE57DB52B8h
+000007fe`57c637f0 e8bb7bab5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c637f5 488bf0          mov     rsi,rax
+IL_0005: dup
+IL_0006: ldc.i4.0
+IL_0007: newobj System.Void System.Threading.AutoResetEvent::.ctor(System.Boolean)
+000007fe`57c637f8 48b9882f8cacfe070000 mov rcx,offset System_Private_CoreLib+0xa72f88 (000007fe`ac8c2f88)
+000007fe`57c63802 e8a97bab5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c63807 488bf8          mov     rdi,rax
+000007fe`57c6380a 488bcf          mov     rcx,rdi
+000007fe`57c6380d 33d2            xor     edx,edx
+000007fe`57c6380f 4533c0          xor     r8d,r8d
+000007fe`57c63812 4533c9          xor     r9d,r9d
+000007fe`57c63815 e836979454      call    System_Private_CoreLib+0x75cf50 (000007fe`ac5acf50)
+IL_000c: stfld System.Threading.AutoResetEvent Asynchronic.BenchmarkTest/<>c__DisplayClass1_0::autoEvent
+IL_0011: dup
+IL_0012: ldc.i4.0
+IL_0013: stfld System.Int32 Asynchronic.BenchmarkTest/<>c__DisplayClass1_0::result
+IL_0018: dup
+IL_0019: ldftn System.Void Asynchronic.BenchmarkTest/<>c__DisplayClass1_0::<ExecuteOnThreadPool>b__0(System.Object)
+IL_001f: newobj System.Void System.Threading.WaitCallback::.ctor(System.Object,System.IntPtr)
+IL_0024: call System.Boolean System.Threading.ThreadPool::QueueUserWorkItem(System.Threading.WaitCallback)
+IL_0029: pop
+IL_002a: dup
+IL_002b: ldfld System.Threading.AutoResetEvent Asynchronic.BenchmarkTest/<>c__DisplayClass1_0::autoEvent
+IL_0030: ldc.i4 2000
+IL_0035: callvirt System.Boolean System.Threading.WaitHandle::WaitOne(System.Int32)
+IL_003a: pop
+IL_003b: dup
+IL_003c: ldfld System.Threading.AutoResetEvent Asynchronic.BenchmarkTest/<>c__DisplayClass1_0::autoEvent
+IL_0041: callvirt System.Void System.Threading.WaitHandle::Close()
+000007fe`57c6381a 488d4e08        lea     rcx,[rsi+8]
+000007fe`57c6381e 488bd7          mov     rdx,rdi
+000007fe`57c63821 e8ea66ab5f      call    coreclr!GC_Initialize+0x41280 (000007fe`b7719f10)
+000007fe`57c63826 33c9            xor     ecx,ecx
+000007fe`57c63828 894e10          mov     dword ptr [rsi+10h],ecx
+000007fe`57c6382b 48b930e986acfe070000 mov rcx,offset System_Private_CoreLib+0xa1e930 (000007fe`ac86e930)
+000007fe`57c63835 e8767bab5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c6383a 488bf8          mov     rdi,rax
+000007fe`57c6383d 488d4f08        lea     rcx,[rdi+8]
+000007fe`57c63841 488bd6          mov     rdx,rsi
+000007fe`57c63844 e8c766ab5f      call    coreclr!GC_Initialize+0x41280 (000007fe`b7719f10)
+000007fe`57c63849 48b9b829c657fe070000 mov rcx,7FE57C629B8h
+000007fe`57c63853 48894f18        mov     qword ptr [rdi+18h],rcx
+000007fe`57c63857 488bcf          mov     rcx,rdi
+000007fe`57c6385a 33d2            xor     edx,edx
+000007fe`57c6385c e85fb99354      call    System_Private_CoreLib+0x74f1c0 (000007fe`ac59f1c0)
+000007fe`57c63861 488b4e08        mov     rcx,qword ptr [rsi+8]
+000007fe`57c63865 448b01          mov     r8d,dword ptr [rcx]
+000007fe`57c63868 440fb64118      movzx   r8d,byte ptr [rcx+18h]
+000007fe`57c6386d 488b4908        mov     rcx,qword ptr [rcx+8]
+000007fe`57c63871 bad0070000      mov     edx,7D0h
+000007fe`57c63876 4533c9          xor     r9d,r9d
+000007fe`57c63879 e8b2c99654      call    System_Private_CoreLib+0x780230 (000007fe`ac5d0230)
+000007fe`57c6387e 488b7e08        mov     rdi,qword ptr [rsi+8]
+000007fe`57c63882 48837f0800      cmp     qword ptr [rdi+8],0
+000007fe`57c63887 740b            je      000007fe`57c63894
+000007fe`57c63889 488b4f08        mov     rcx,qword ptr [rdi+8]
+000007fe`57c6388d 8b01            mov     eax,dword ptr [rcx]
+000007fe`57c6388f e89cdda45f      call    coreclr!coreclr_shutdown_2+0x87b00 (000007fe`b76b1630)
+000007fe`57c63894 488bcf          mov     rcx,rdi
+000007fe`57c63897 e8f44a8b54      call    System_Private_CoreLib+0x6c8390 (000007fe`ac518390)
+IL_0046: ldfld System.Int32 Asynchronic.BenchmarkTest/<>c__DisplayClass1_0::result
+IL_004b: ret
+000007fe`57c6389c 8b4610          mov     eax,dword ptr [rsi+10h]
+
+000007fe`ac5acf50 System.Threading.EventWaitHandle..ctor(Boolean, System.Threading.EventResetMode, System.String)
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Threading.WaitHandle::.ctor()
+000007fe`ac5acf6b 33c9            xor     ecx,ecx
+000007fe`ac5acf6d 48894e08        mov     qword ptr [rsi+8],rcx
+000007fe`ac5acf71 488b0dd0458aff  mov     rcx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+000007fe`ac5acf78 ba24030000      mov     edx,324h
+000007fe`ac5acf7d e81e71b7ff      call    System_Private_CoreLib+0x2d40a0 (000007fe`ac1240a0)
+000007fe`ac5acf82 4c8b80a8080000  mov     r8,qword ptr [rax+8A8h]
+000007fe`ac5acf89 4c894610        mov     qword ptr [rsi+10h],r8
+000007fe`ac5acf8d c6461800        mov     byte ptr [rsi+18h],0
+IL_0006: ldarg.3
+IL_0007: brfalse.s IL_0036
+000007fe`ac5acf91 4885ff          test    rdi,rdi
+000007fe`ac5acf94 740d            je      System_Private_CoreLib+0x75cfa3 (000007fe`ac5acfa3)
+IL_0009: ldc.i4 260
+IL_000e: ldarg.3
+IL_000f: callvirt System.Int32 System.String::get_Length()
+IL_0014: bge.s IL_0036
+IL_0016: call System.String System.SR::get_Argument_WaitHandleNameTooLong()
+IL_001b: ldarg.3
+IL_001c: ldc.i4 260
+IL_0021: box System.Int32
+IL_0026: call System.String System.SR::Format(System.String,System.Object,System.Object)
+IL_002b: ldstr "name"
+IL_0030: newobj System.Void System.ArgumentException::.ctor(System.String,System.String)
+000007fe`ac5acf96 817f0804010000  cmp     dword ptr [rdi+8],104h
+000007fe`ac5acf9d 0f8f51333f00    jg      System_Private_CoreLib+0xb502f4 (000007fe`ac9a02f4)
+IL_0036: ldarg.1
+IL_0037: brtrue.s IL_003c
+000007fe`ac5acfa3 4584f6          test    r14b,r14b
+000007fe`ac5acfa6 7505            jne     System_Private_CoreLib+0x75cfad (000007fe`ac5acfad)
+IL_0039: ldc.i4.0
+IL_003a: br.s IL_003d
+000007fe`ac5acfa8 4533c0          xor     r8d,r8d
+000007fe`ac5acfab eb06            jmp     System_Private_CoreLib+0x75cfb3 (000007fe`ac5acfb3)
+IL_003c: ldc.i4.2
+IL_003d: stloc.0
+000007fe`ac5acfad 41b802000000    mov     r8d,2
+IL_003e: ldarg.2
+IL_003f: brfalse.s IL_005c
+000007fe`ac5acfb3 85db            test    ebx,ebx
+000007fe`ac5acfb5 740d            je      System_Private_CoreLib+0x75cfc4 (000007fe`ac5acfc4)
+IL_0041: ldarg.2
+IL_0042: ldc.i4.1
+IL_0043: bne.un.s IL_004b
+000007fe`ac5acfb7 83fb01          cmp     ebx,1
+000007fe`ac5acfba 0f85a1333f00    jne     System_Private_CoreLib+0xb50361 (000007fe`ac9a0361)
+IL_0045: ldloc.0
+IL_0046: ldc.i4.1
+IL_0047: or
+IL_0048: stloc.0
+IL_0049: br.s IL_005c
+IL_004b: call System.String System.SR::get_Argument_InvalidFlag()
+IL_0050: ldarg.3
+IL_0051: call System.String System.SR::Format(System.String,System.Object)
+IL_0056: newobj System.Void System.ArgumentException::.ctor(System.String)
+000007fe`ac5acfc0 4183c801        or      r8d,1
+IL_005c: ldnull
+IL_005d: ldarg.3
+IL_005e: ldloc.0
+IL_005f: ldc.i4 34603010
+IL_0064: call Microsoft.Win32.SafeHandles.SafeWaitHandle Microsoft.Win32.Win32Native::CreateEventEx(Microsoft.Win32.Win32Native/SECURITY_ATTRIBUTES,System.String,System.UInt32,System.UInt32)
+IL_0069: stloc.1
+000007fe`ac5acfc4 488bd7          mov     rdx,rdi
+000007fe`ac5acfc7 33c9            xor     ecx,ecx
+000007fe`ac5acfc9 41b902001002    mov     r9d,2100002h
+000007fe`ac5acfcf e84c7bbaff      call    System_Private_CoreLib+0x304b20 (000007fe`ac154b20)
+000007fe`ac5acfd4 488bd8          mov     rbx,rax
+IL_006a: ldloc.1
+IL_006b: callvirt System.Boolean System.Runtime.InteropServices.SafeHandle::get_IsInvalid()
+IL_0070: brfalse.s IL_00a6
+000007fe`ac5acfd7 488bcb          mov     rcx,rbx
+000007fe`ac5acfda 3909            cmp     dword ptr [rcx],ecx
+000007fe`ac5acfdc e80f07fbff      call    System_Private_CoreLib+0x70d6f0 (000007fe`ac55d6f0)
+000007fe`ac5acfe1 85c0            test    eax,eax
+000007fe`ac5acfe3 0f85b9333f00    jne     System_Private_CoreLib+0xb503a2 (000007fe`ac9a03a2)
+IL_00a6: ldarg.0
+IL_00a7: ldloc.1
+IL_00a8: call System.Void System.Threading.WaitHandle::SetHandleInternal(Microsoft.Win32.SafeHandles.SafeWaitHandle)
+000007fe`ac5acfe9 488d4e08        lea     rcx,[rsi+8]
+000007fe`ac5acfed 488bd3          mov     rdx,rbx
+000007fe`ac5acff0 e81b70b7ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+000007fe`ac5acff5 488b4b08        mov     rcx,qword ptr [rbx+8]
+000007fe`ac5acff9 48894e10        mov     qword ptr [rsi+10h],rcx
+IL_00ad: ret
+000007fe`ac5acffd 488d65e0        lea     rsp,[rbp-20h]
+000007fe`ac5ad001 5b              pop     rbx
+000007fe`ac5ad002 5e              pop     rsi
+000007fe`ac5ad003 5f              pop     rdi
+000007fe`ac5ad004 415e            pop     r14
+000007fe`ac5ad006 5d              pop     rbp
+000007fe`ac5ad007 c3              ret
+000007fe`ac5ad008 cc              int     3
+000007fe`ac5ad009 cc              int     3
+000007fe`ac5ad00a cc              int     3
+000007fe`ac5ad00b cc              int     3
+000007fe`ac5ad00c cc              int     3
+000007fe`ac5ad00d cc              int     3
+000007fe`ac5ad00e cc              int     3
+000007fe`ac5ad00f cc              int     3
+000007fe`ac5ad010 4883ec38        sub     rsp,38h
+000007fe`ac5ad014 90              nop
+000007fe`ac5ad015 488b442460      mov     rax,qword ptr [rsp+60h]
+000007fe`ac5ad01a 4889442420      mov     qword ptr [rsp+20h],rax
+000007fe`ac5ad01f 33c0            xor     eax,eax
+000007fe`ac5ad021 4889442428      mov     qword ptr [rsp+28h],rax
+000007fe`ac5ad026 0fb6d2          movzx   edx,dl
+000007fe`ac5ad029 e812000000      call    System_Private_CoreLib+0x75d040 (000007fe`ac5ad040)
+000007fe`ac5ad02e 90              nop
+000007fe`ac5ad02f 4883c438        add     rsp,38h
+000007fe`ac5ad033 c3              ret
+000007fe`ac5ad034 cc              int     3
+000007fe`ac5ad035 cc              int     3
+000007fe`ac5ad036 cc              int     3
+000007fe`ac5ad037 cc              int     3
+000007fe`ac5ad038 cc              int     3
+000007fe`ac5ad039 cc              int     3
+000007fe`ac5ad03a cc              int     3
+000007fe`ac5ad03b cc              int     3
+000007fe`ac5ad03c cc              int     3
+000007fe`ac5ad03d cc              int     3
+000007fe`ac5ad03e cc              int     3
+000007fe`ac5ad03f cc              int     3
+000007fe`ac5ad040 55              push    rbp
+000007fe`ac5ad041 4156            push    r14
+000007fe`ac5ad043 57              push    rdi
+000007fe`ac5ad044 56              push    rsi
+000007fe`ac5ad045 53              push    rbx
+000007fe`ac5ad046 4883ec20        sub     rsp,20h
+000007fe`ac5ad04a 488d6c2440      lea     rbp,[rsp+40h]
+000007fe`ac5ad04f 488bf1          mov     rsi,rcx
+000007fe`ac5ad052 448bf2          mov     r14d,edx
+000007fe`ac5ad055 418bd8          mov     ebx,r8d
+000007fe`ac5ad058 498bf9          mov     rdi,r9
+000007fe`ac5ad05b 33c9            xor     ecx,ecx
+000007fe`ac5ad05d 48894e08        mov     qword ptr [rsi+8],rcx
+000007fe`ac5ad061 488b0de0448aff  mov     rcx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+000007fe`ac5ad068 ba24030000      mov     edx,324h
+IL_0035: throw
+000007fe`ac5ad06d e82e70b7ff      call    System_Private_CoreLib+0x2d40a0 (000007fe`ac1240a0)
+000007fe`ac5ad072 488b88a8080000  mov     rcx,qword ptr [rax+8A8h]
+000007fe`ac5ad079 48894e10        mov     qword ptr [rsi+10h],rcx
+000007fe`ac5ad07d c6461800        mov     byte ptr [rsi+18h],0
+000007fe`ac5ad081 4885ff          test    rdi,rdi
+000007fe`ac5ad084 740d            je      System_Private_CoreLib+0x75d093 (000007fe`ac5ad093)
+000007fe`ac5ad086 817f0804010000  cmp     dword ptr [rdi+8],104h
+000007fe`ac5ad08d 0f8f85333f00    jg      System_Private_CoreLib+0xb50418 (000007fe`ac9a0418)
+000007fe`ac5ad093 4584f6          test    r14b,r14b
+000007fe`ac5ad096 7504            jne     System_Private_CoreLib+0x75d09c (000007fe`ac5ad09c)
+000007fe`ac5ad098 33c9            xor     ecx,ecx
+000007fe`ac5ad09a eb05            jmp     System_Private_CoreLib+0x75d0a1 (000007fe`ac5ad0a1)
+000007fe`ac5ad09c b902000000      mov     ecx,2
+000007fe`ac5ad0a1 448bc1          mov     r8d,ecx
+000007fe`ac5ad0a4 85db            test    ebx,ebx
+000007fe`ac5ad0a6 740d            je      System_Private_CoreLib+0x75d0b5 (000007fe`ac5ad0b5)
+000007fe`ac5ad0a8 83fb01          cmp     ebx,1
+000007fe`ac5ad0ab 0f85d4333f00    jne     System_Private_CoreLib+0xb50485 (000007fe`ac9a0485)
+IL_005b: throw
+000007fe`ac5ad0ae 333f            xor     edi,dword ptr [rdi]
+000007fe`ac5ad0b0 004183          add     byte ptr [rcx-7Dh],al
+000007fe`ac5ad0b3 c80133c9        enter   3301h,0C9h
+IL_0072: call System.Int32 System.Runtime.InteropServices.Marshal::GetLastWin32Error()
+IL_0077: stloc.2
+000007fe`ac5ad0b6 c9              leave
+000007fe`ac5ad0b7 488bd7          mov     rdx,rdi
+000007fe`ac5ad0ba 41b902001002    mov     r9d,2100002h
+IL_0078: ldloc.1
+IL_0079: callvirt System.Void System.Runtime.InteropServices.SafeHandle::SetHandleAsInvalid()
+000007fe`ac5ad0bd 0010            add     byte ptr [rax],dl
+000007fe`ac5ad0bf 02e8            add     ch,al
+000007fe`ac5ad0c1 5b              pop     rbx
+000007fe`ac5ad0c2 7aba            jp      System_Private_CoreLib+0x75d07e (000007fe`ac5ad07e)
+000007fe`ac5ad0c4 ff488b          dec     dword ptr [rax-75h]
+IL_007e: ldarg.3
+IL_007f: brfalse.s IL_009e
+000007fe`ac5ad0c5 488bd8          mov     rbx,rax
+000007fe`ac5ad0c8 e8535dbaff      call    System_Private_CoreLib+0x302e20 (000007fe`ac152e20)
+IL_0081: ldarg.3
+IL_0082: callvirt System.Int32 System.String::get_Length()
+IL_0087: brfalse.s IL_009e
+000007fe`ac5ad0ca 5d              pop     rbp
+000007fe`ac5ad0cb baff448bf0      mov     edx,0F08B44FFh
+IL_0089: ldc.i4.6
+IL_008a: ldloc.2
+IL_008b: bne.un.s IL_009e
+IL_008d: call System.String System.SR::get_Threading_WaitHandleCannotBeOpenedException_InvalidHandle()
+IL_0092: ldarg.3
+IL_0093: call System.String System.SR::Format(System.String,System.Object)
+IL_0098: newobj System.Void System.Threading.WaitHandleCannotBeOpenedException::.ctor(System.String)
+000007fe`ac5ad0d0 488bcb          mov     rcx,rbx
+000007fe`ac5ad0d3 3909            cmp     dword ptr [rcx],ecx
+000007fe`ac5ad0d5 e81606fbff      call    System_Private_CoreLib+0x70d6f0 (000007fe`ac55d6f0)
+000007fe`ac5ad0da 85c0            test    eax,eax
+000007fe`ac5ad0dc 0f85e4333f00    jne     System_Private_CoreLib+0xb504c6 (000007fe`ac9a04c6)
+000007fe`ac5ad0e2 4181feb7000000  cmp     r14d,0B7h
+000007fe`ac5ad0e9 0f95c2          setne   dl
+000007fe`ac5ad0ec 488b7d30        mov     rdi,qword ptr [rbp+30h]
+000007fe`ac5ad0f0 8817            mov     byte ptr [rdi],dl
+000007fe`ac5ad0f2 488d4e08        lea     rcx,[rsi+8]
+000007fe`ac5ad0f6 488bd3          mov     rdx,rbx
+000007fe`ac5ad0f9 e8126fb7ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+000007fe`ac5ad0fe 488b4b08        mov     rcx,qword ptr [rbx+8]
+000007fe`ac5ad102 48894e10        mov     qword ptr [rsi+10h],rcx
+000007fe`ac5ad106 488d65e0        lea     rsp,[rbp-20h]
+000007fe`ac5ad10a 5b              pop     rbx
+000007fe`ac5ad10b 5e              pop     rsi
+000007fe`ac5ad10c 5f              pop     rdi
+000007fe`ac5ad10d 415e            pop     r14
+IL_009d: throw
+000007fe`ac5ad10e 5e              pop     rsi
+000007fe`ac5ad10f 5d              pop     rbp
+000007fe`ac5ad110 c3              ret
+000007fe`ac5ad111 cc              int     3
+000007fe`ac5ad112 cc              int     3
+000007fe`ac5ad113 cc              int     3
+000007fe`ac5ad114 cc              int     3
+000007fe`ac5ad115 cc              int     3
+IL_009e: ldloc.2
+IL_009f: ldarg.3
+IL_00a0: call System.Exception System.IO.Win32Marshal::GetExceptionForWin32Error(System.Int32,System.String)
+IL_00a5: throw
+000007fe`ac5ad116 cc              int     3
+000007fe`ac5ad117 cc              int     3
+000007fe`ac5ad118 cc              int     3
+000007fe`ac5ad119 cc              int     3
+000007fe`ac5ad11a cc              int     3
+000007fe`ac5ad11b cc              int     3
+000007fe`ac5ad11c cc              int     3
+000007fe`ac5ad11d cc              int     3
+000007fe`ac5ad11e cc              int     3
+000007fe`ac5ad11f cc              int     3
+000007fe`ac5ad120 57              push    rdi
+000007fe`ac5ad121 56              push    rsi
+000007fe`ac5ad122 4883ec28        sub     rsp,28h
+000007fe`ac5ad126 488bf1          mov     rsi,rcx
+000007fe`ac5ad129 488bfa          mov     rdi,rdx
+000007fe`ac5ad12c 33c9            xor     ecx,ecx
+000007fe`ac5ad12e 48894e08        mov     qword ptr [rsi+8],rcx
+000007fe`ac5ad132 488b0d0f448aff  mov     rcx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+
+000007fe`ac59f1c0 System.Threading.ThreadPool.QueueUserWorkItem(System.Threading.WaitCallback, System.Object)
+IL_0000: ldarg.0
+IL_0001: brtrue.s IL_000a
+000007fe`ac59f1d0 4885f6          test    rsi,rsi
+000007fe`ac59f1d3 0f8457044000    je      System_Private_CoreLib+0xb4f630 (000007fe`ac99f630)
+IL_000a: call System.Void System.Threading.ThreadPool::EnsureVMInitialized()
+IL_000f: call System.Threading.ExecutionContext System.Threading.ExecutionContext::Capture()
+IL_0014: stloc.0
+000007fe`ac59f1d9 488b1d68238bff  mov     rbx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+000007fe`ac59f1e0 488bcb          mov     rcx,rbx
+000007fe`ac59f1e3 ba02030000      mov     edx,302h
+000007fe`ac59f1e8 e8b34eb8ff      call    System_Private_CoreLib+0x2d40a0 (000007fe`ac1240a0)
+000007fe`ac59f1ed 80b8a008000000  cmp     byte ptr [rax+8A0h],0
+000007fe`ac59f1f4 7505            jne     System_Private_CoreLib+0x74f1fb (000007fe`ac59f1fb)
+000007fe`ac59f1f6 e865060000      call    System_Private_CoreLib+0x74f860 (000007fe`ac59f860)
+000007fe`ac59f1fb e8802bf1ff      call    System_Private_CoreLib+0x661d80 (000007fe`ac4b1d80)
+000007fe`ac59f200 488be8          mov     rbp,rax
+IL_0015: ldloc.0
+IL_0016: brfalse.s IL_0020
+IL_0018: ldloc.0
+IL_0019: callvirt System.Boolean System.Threading.ExecutionContext::get_IsDefault()
+IL_001e: brtrue.s IL_002c
+000007fe`ac59f203 4885ed          test    rbp,rbp
+000007fe`ac59f206 7406            je      System_Private_CoreLib+0x74f20e (000007fe`ac59f20e)
+000007fe`ac59f208 807d1900        cmp     byte ptr [rbp+19h],0
+000007fe`ac59f20c 7535            jne     System_Private_CoreLib+0x74f243 (000007fe`ac59f243)
+IL_0020: ldarg.0
+IL_0021: ldarg.1
+IL_0022: ldloc.0
+IL_0023: newobj System.Void System.Threading.QueueUserWorkItemCallback::.ctor(System.Threading.WaitCallback,System.Object,System.Threading.ExecutionContext)
+IL_0028: stloc.2
+000007fe`ac59f20e 488d0d2b303200  lea     rcx,[System_Private_CoreLib+0xa72240 (000007fe`ac8c2240)]
+000007fe`ac59f215 e8664eb8ff      call    System_Private_CoreLib+0x2d4080 (000007fe`ac124080)
+000007fe`ac59f21a 4c8bf0          mov     r14,rax
+000007fe`ac59f21d 498d4e08        lea     rcx,[r14+8]
+000007fe`ac59f221 488bd6          mov     rdx,rsi
+000007fe`ac59f224 e8e74db8ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+000007fe`ac59f229 498d4e10        lea     rcx,[r14+10h]
+000007fe`ac59f22d 488bd7          mov     rdx,rdi
+000007fe`ac59f230 e8db4db8ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+000007fe`ac59f235 498d4e18        lea     rcx,[r14+18h]
+000007fe`ac59f239 488bd5          mov     rdx,rbp
+000007fe`ac59f23c e8cf4db8ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+IL_0029: ldloc.2
+IL_002a: br.s IL_0035
+000007fe`ac59f241 eb27            jmp     System_Private_CoreLib+0x74f26a (000007fe`ac59f26a)
+IL_002c: ldarg.0
+IL_002d: ldarg.1
+IL_002e: newobj System.Void System.Threading.QueueUserWorkItemCallbackDefaultContext::.ctor(System.Threading.WaitCallback,System.Object)
+IL_0033: stloc.2
+IL_0034: ldloc.2
+IL_0035: stloc.1
+000007fe`ac59f243 488d0d7e313200  lea     rcx,[System_Private_CoreLib+0xa723c8 (000007fe`ac8c23c8)]
+000007fe`ac59f24a e8314eb8ff      call    System_Private_CoreLib+0x2d4080 (000007fe`ac124080)
+000007fe`ac59f24f 4c8bf0          mov     r14,rax
+000007fe`ac59f252 498d4e08        lea     rcx,[r14+8]
+000007fe`ac59f256 488bd6          mov     rdx,rsi
+000007fe`ac59f259 e8b24db8ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+000007fe`ac59f25e 498d4e10        lea     rcx,[r14+10h]
+000007fe`ac59f262 488bd7          mov     rdx,rdi
+000007fe`ac59f265 e8a64db8ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+IL_0036: ldsfld System.Threading.ThreadPoolWorkQueue System.Threading.ThreadPoolGlobals::workQueue
+IL_003b: ldloc.1
+IL_003c: ldc.i4.1
+IL_003d: callvirt System.Void System.Threading.ThreadPoolWorkQueue::Enqueue(System.Threading.IThreadPoolWorkItem,System.Boolean)
+000007fe`ac59f26a 488bcb          mov     rcx,rbx
+000007fe`ac59f26d ba02030000      mov     edx,302h
+000007fe`ac59f272 e8114eb8ff      call    System_Private_CoreLib+0x2d4088 (000007fe`ac124088)
+000007fe`ac59f277 488b88d8070000  mov     rcx,qword ptr [rax+7D8h]
+000007fe`ac59f27e 498bd6          mov     rdx,r14
+000007fe`ac59f281 41b801000000    mov     r8d,1
+000007fe`ac59f287 3909            cmp     dword ptr [rcx],ecx
+000007fe`ac59f289 e8120a0000      call    System_Private_CoreLib+0x74fca0 (000007fe`ac59fca0)
+IL_0042: ldc.i4.1
+IL_0043: ret
+000007fe`ac59f28e b801000000      mov     eax,1
+000007fe`ac59f293 4883c420        add     rsp,20h
+000007fe`ac59f297 5b              pop     rbx
+000007fe`ac59f298 5d              pop     rbp
+000007fe`ac59f299 5e              pop     rsi
+000007fe`ac59f29a 5f              pop     rdi
+000007fe`ac59f29b 415e            pop     r14
+000007fe`ac59f29d c3              ret
+IL_0003: ldc.i4.s 64
+IL_0005: call System.Void System.ThrowHelper::ThrowArgumentNullException(System.ExceptionArgument)
+000007fe`ac59f29e cc              int     3
+000007fe`ac59f29f cc              int     3
+000007fe`ac59f2a0 4157            push    r15
+000007fe`ac59f2a2 4156            push    r14
+000007fe`ac59f2a4 4154            push    r12
+000007fe`ac59f2a6 57              push    rdi
+000007fe`ac59f2a7 56              push    rsi
+000007fe`ac59f2a8 55              push    rbp
+000007fe`ac59f2a9 53              push    rbx
+000007fe`ac59f2aa 4883ec30        sub     rsp,30h
+000007fe`ac59f2ae 48894c2428      mov     qword ptr [rsp+28h],rcx
+000007fe`ac59f2b3 488be9          mov     rbp,rcx
+000007fe`ac59f2b6 488bf2          mov     rsi,rdx
+000007fe`ac59f2b9 498bf8          mov     rdi,r8
+000007fe`ac59f2bc 418bd9          mov     ebx,r9d
+
+000007fe`ac5d0230 System.Threading.WaitHandle.InternalWaitOne(System.Runtime.InteropServices.SafeHandle, Int64, Boolean, Boolean)
+IL_0000: ldarg.0
+IL_0001: brtrue.s IL_000f
+IL_0003: ldnull
+IL_0004: call System.String System.SR::get_ObjectDisposed_Generic()
+IL_0009: newobj System.Void System.ObjectDisposedException::.ctor(System.String,System.String)
+000007fe`ac5d0235 4885c9          test    rcx,rcx
+000007fe`ac5d0238 0f8422263d00    je      System_Private_CoreLib+0xb52860 (000007fe`ac9a2860)
+IL_000f: ldarg.0
+IL_0010: ldarg.1
+IL_0011: conv.u4
+IL_0012: ldarg.2
+IL_0013: ldarg.3
+IL_0014: call System.Int32 System.Threading.WaitHandle::WaitOneNative(System.Runtime.InteropServices.SafeHandle,System.UInt32,System.Boolean,System.Boolean)
+IL_0019: stloc.0
+000007fe`ac5d023e 450fb6c0        movzx   r8d,r8b
+000007fe`ac5d0242 450fb6c9        movzx   r9d,r9b
+000007fe`ac5d0246 e8fd5cb8ff      call    System_Private_CoreLib+0x305f48 (000007fe`ac155f48)
+IL_001a: ldloc.0
+IL_001b: ldc.i4 128
+IL_0020: bne.un.s IL_0027
+000007fe`ac5d024b 3d80000000      cmp     eax,80h
+000007fe`ac5d0250 0f8442263d00    je      System_Private_CoreLib+0xb52898 (000007fe`ac9a2898)
+IL_0027: ldloc.0
+IL_0028: ldc.i4 258
+IL_002d: ceq
+IL_002f: ldc.i4.0
+IL_0030: ceq
+IL_0032: ret
+000007fe`ac5d0256 3d02010000      cmp     eax,102h
+000007fe`ac5d025b 0f95c0          setne   al
+000007fe`ac5d025e 0fb6c0          movzx   eax,al
+000007fe`ac5d0261 4883c420        add     rsp,20h
+000007fe`ac5d0265 5e              pop     rsi
+000007fe`ac5d0266 c3              ret
+000007fe`ac5d0267 cc              int     3
+000007fe`ac5d0268 cc              int     3
+000007fe`ac5d0269 cc              int     3
+000007fe`ac5d026a cc              int     3
+000007fe`ac5d026b cc              int     3
+000007fe`ac5d026c cc              int     3
+000007fe`ac5d026d cc              int     3
+000007fe`ac5d026e cc              int     3
+000007fe`ac5d026f cc              int     3
+000007fe`ac5d0270 56              push    rsi
+000007fe`ac5d0271 4883ec20        sub     rsp,20h
+000007fe`ac5d0275 4883790800      cmp     qword ptr [rcx+8],0
+000007fe`ac5d027a 0f8420263d00    je      System_Private_CoreLib+0xb528a0 (000007fe`ac9a28a0)
+000007fe`ac5d0280 440fb64118      movzx   r8d,byte ptr [rcx+18h]
+000007fe`ac5d0285 488b4908        mov     rcx,qword ptr [rcx+8]
+000007fe`ac5d0289 baffffffff      mov     edx,0FFFFFFFFh
+000007fe`ac5d028e 4533c9          xor     r9d,r9d
+000007fe`ac5d0291 e8b25cb8ff      call    System_Private_CoreLib+0x305f48 (000007fe`ac155f48)
+000007fe`ac5d0296 3d80000000      cmp     eax,80h
+IL_000e: throw
+000007fe`ac5d0297 800000          add     byte ptr [rax],0
+000007fe`ac5d029a 000f            add     byte ptr [rdi],cl
+000007fe`ac5d029c 8437            test    byte ptr [rdi],dh
+000007fe`ac5d029e 263d003d0201    cmp     eax,1023D00h
+IL_0022: call System.Void System.Threading.WaitHandle::ThrowAbandonedMutexException()
+000007fe`ac5d029f 3d003d0201      cmp     eax,1023D00h
+000007fe`ac5d02a4 0000            add     byte ptr [rax],al
+000007fe`ac5d02a6 0f95c0          setne   al
+000007fe`ac5d02a9 0fb6c0          movzx   eax,al
+000007fe`ac5d02ac 4883c420        add     rsp,20h
+000007fe`ac5d02b0 5e              pop     rsi
+000007fe`ac5d02b1 c3              ret
+000007fe`ac5d02b2 cc              int     3
+000007fe`ac5d02b3 cc              int     3
+000007fe`ac5d02b4 cc              int     3
+000007fe`ac5d02b5 cc              int     3
+000007fe`ac5d02b6 cc              int     3
+000007fe`ac5d02b7 cc              int     3
+000007fe`ac5d02b8 cc              int     3
+000007fe`ac5d02b9 cc              int     3
+000007fe`ac5d02ba cc              int     3
+000007fe`ac5d02bb cc              int     3
+000007fe`ac5d02bc cc              int     3
+000007fe`ac5d02bd cc              int     3
+000007fe`ac5d02be cc              int     3
+
+000007fe`ac518390 System.GC.SuppressFinalize(System.Object)
+IL_0000: ldarg.0
+IL_0001: brtrue.s IL_000e
+000007fe`ac518395 4885c9          test    rcx,rcx
+000007fe`ac518398 0f84eeb34700    je      System_Private_CoreLib+0xb4378c (000007fe`ac99378c)
+IL_000e: ldarg.0
+IL_000f: call System.Void System.GC::_SuppressFinalize(System.Object)
+IL_0014: ret
+000007fe`ac51839e 488d05f3b8c3ff  lea     rax,[System_Private_CoreLib+0x303c98 (000007fe`ac153c98)]
+000007fe`ac5183a5 4883c420        add     rsp,20h
+000007fe`ac5183a9 5e              pop     rsi
+000007fe`ac5183aa 48ffe0          jmp     rax
+IL_0003: ldstr "obj"
+IL_0008: newobj System.Void System.ArgumentNullException::.ctor(System.String)
+000007fe`ac5183ad cc              int     3
+000007fe`ac5183ae cc              int     3
+000007fe`ac5183af cc              int     3
+000007fe`ac5183b0 56              push    rsi
+000007fe`ac5183b1 4883ec20        sub     rsp,20h
+000007fe`ac5183b5 4885c9          test    rcx,rcx
+000007fe`ac5183b8 0f84feb34700    je      System_Private_CoreLib+0xb437bc (000007fe`ac9937bc)
+000007fe`ac5183be 488d05e3b8c3ff  lea     rax,[System_Private_CoreLib+0x303ca8 (000007fe`ac153ca8)]
+000007fe`ac5183c5 4883c420        add     rsp,20h
+000007fe`ac5183c9 5e              pop     rsi
+000007fe`ac5183ca 48ffe0          jmp     rax
+000007fe`ac5183cd cc              int     3
+000007fe`ac5183ce cc              int     3
+000007fe`ac5183cf cc              int     3
+000007fe`ac5183d0 55              push    rbp
+IL_000d: throw
+000007fe`ac5183d1 4157            push    r15
+000007fe`ac5183d3 4156            push    r14
+000007fe`ac5183d5 4155            push    r13
+000007fe`ac5183d7 4154            push    r12
+000007fe`ac5183d9 57              push    rdi
+000007fe`ac5183da 56              push    rsi
+000007fe`ac5183db 53              push    rbx
+000007fe`ac5183dc 4883ec68        sub     rsp,68h
+000007fe`ac5183e0 488dac24a0000000 lea     rbp,[rsp+0A0h]
+000007fe`ac5183e8 8bf1            mov     esi,ecx
+000007fe`ac5183ea 488d4d90        lea     rcx,[rbp-70h]
+000007fe`ac5183ee 498bd2          mov     rdx,r10
+
+000007fe`ac6e1170 System.Threading.AutoResetEvent..ctor(Boolean)
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: ldc.i4.0
+IL_0003: call System.Void System.Threading.EventWaitHandle::.ctor(System.Boolean,System.Threading.EventResetMode)
+IL_0008: ret
+000007fe`ac6e1175 0fb6d2          movzx   edx,dl
+000007fe`ac6e1178 4533c0          xor     r8d,r8d
+000007fe`ac6e117b 4533c9          xor     r9d,r9d
+000007fe`ac6e117e 488d05cbbdecff  lea     rax,[System_Private_CoreLib+0x75cf50 (000007fe`ac5acf50)]
+
+000007fe`57c638c0 Asynchronic.BenchmarkTest+<>c__DisplayClass1_0.<ExecuteOnThreadPool>b__0(System.Object)
+IL_0017: ret
+000007fe`57c638d6 90              nop
+
+000007fe`ac5d01c0 System.Threading.WaitHandle.WaitOne(Int32)
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: ldc.i4.0
+IL_0003: callvirt System.Boolean System.Threading.WaitHandle::WaitOne(System.Int32,System.Boolean)
+IL_0008: ret
+000007fe`ac5d01c5 4533c0          xor     r8d,r8d
+000007fe`ac5d01c8 488b01          mov     rax,qword ptr [rcx]
+000007fe`ac5d01cb 488b4040        mov     rax,qword ptr [rax+40h]
+000007fe`ac5d01cf 488b4038        mov     rax,qword ptr [rax+38h]
+
+000007fe`ac5d0710 System.Threading.WaitHandle.Close()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.1
+IL_0002: callvirt System.Void System.Threading.WaitHandle::Dispose(System.Boolean)
+000007fe`ac5d0718 488bce          mov     rcx,rsi
+000007fe`ac5d071b ba01000000      mov     edx,1
+000007fe`ac5d0720 488b06          mov     rax,qword ptr [rsi]
+000007fe`ac5d0723 488b4048        mov     rax,qword ptr [rax+48h]
+000007fe`ac5d0727 ff5028          call    qword ptr [rax+28h]
+IL_0007: ldarg.0
+IL_0008: call System.Void System.GC::SuppressFinalize(System.Object)
+IL_000d: ret
+000007fe`ac5d072a 488bce          mov     rcx,rsi
+000007fe`ac5d072d 488d055c7cf4ff  lea     rax,[System_Private_CoreLib+0x6c8390 (000007fe`ac518390)]
+
+No ILOffsetMap found
+System.Runtime.InteropServices.SafeHandle.InternalDispose()
+Asynchronic.BenchmarkTest+<>c__DisplayClass1_0..ctor()
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+000007fe`57c637e0 Asynchronic.BenchmarkTest.ExecuteOnTask()
+IL_0000: newobj System.Void Asynchronic.BenchmarkTest/<>c__DisplayClass2_0::.ctor()
+000007fe`57c637ed 48b99052db57fe070000 mov rcx,7FE57DB5290h
+000007fe`57c637f7 e8b47bab5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c637fc 488bf0          mov     rsi,rax
+IL_0005: dup
+IL_0006: ldc.i4.0
+IL_0007: stfld System.Int32 Asynchronic.BenchmarkTest/<>c__DisplayClass2_0::result
+IL_000c: dup
+IL_000d: ldftn System.Void Asynchronic.BenchmarkTest/<>c__DisplayClass2_0::<ExecuteOnTask>b__0()
+IL_0013: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+000007fe`57c637ff 33c9            xor     ecx,ecx
+000007fe`57c63801 894e08          mov     dword ptr [rsi+8],ecx
+000007fe`57c63804 48b9c09786acfe070000 mov rcx,offset System_Private_CoreLib+0xa197c0 (000007fe`ac8697c0)
+000007fe`57c6380e e89d7bab5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c63813 488bf8          mov     rdi,rax
+000007fe`57c63816 488d4f08        lea     rcx,[rdi+8]
+000007fe`57c6381a 488bd6          mov     rdx,rsi
+000007fe`57c6381d e8ee66ab5f      call    coreclr!GC_Initialize+0x41280 (000007fe`b7719f10)
+000007fe`57c63822 48b9b829c657fe070000 mov rcx,7FE57C629B8h
+000007fe`57c6382c 48894f18        mov     qword ptr [rdi+18h],rcx
+IL_0018: newobj System.Void System.Threading.Tasks.Task::.ctor(System.Action)
+000007fe`57c63830 48b930d18aacfe070000 mov rcx,offset System_Private_CoreLib+0xa5d130 (000007fe`ac8ad130)
+000007fe`57c6383a e8717bab5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c6383f 488bd8          mov     rbx,rax
+000007fe`57c63842 33c9            xor     ecx,ecx
+000007fe`57c63844 48894c2420      mov     qword ptr [rsp+20h],rcx
+000007fe`57c63849 33c9            xor     ecx,ecx
+000007fe`57c6384b 894c2428        mov     dword ptr [rsp+28h],ecx
+000007fe`57c6384f 894c2430        mov     dword ptr [rsp+30h],ecx
+000007fe`57c63853 33c9            xor     ecx,ecx
+000007fe`57c63855 48894c2438      mov     qword ptr [rsp+38h],rcx
+000007fe`57c6385a 488bcb          mov     rcx,rbx
+000007fe`57c6385d 488bd7          mov     rdx,rdi
+000007fe`57c63860 4533c0          xor     r8d,r8d
+000007fe`57c63863 4533c9          xor     r9d,r9d
+000007fe`57c63866 e825059054      call    System_Private_CoreLib+0x713d90 (000007fe`ac563d90)
+IL_001d: dup
+IL_001e: callvirt System.Void System.Threading.Tasks.Task::Start()
+000007fe`57c6386b e820b99254      call    System_Private_CoreLib+0x73f190 (000007fe`ac58f190)
+000007fe`57c63870 488bd0          mov     rdx,rax
+000007fe`57c63873 488bcb          mov     rcx,rbx
+000007fe`57c63876 e8c50d9054      call    System_Private_CoreLib+0x714640 (000007fe`ac564640)
+IL_0023: ldc.i4 2000
+IL_0028: callvirt System.Boolean System.Threading.Tasks.Task::Wait(System.Int32)
+IL_002d: pop
+IL_002e: ldfld System.Int32 Asynchronic.BenchmarkTest/<>c__DisplayClass2_0::result
+IL_0033: ret
+000007fe`57c6387b 488bcb          mov     rcx,rbx
+000007fe`57c6387e 4533c0          xor     r8d,r8d
+000007fe`57c63881 bad0070000      mov     edx,7D0h
+000007fe`57c63886 e8652f9054      call    System_Private_CoreLib+0x7167f0 (000007fe`ac5667f0)
+000007fe`57c6388b 8b4608          mov     eax,dword ptr [rsi+8]
+
+000007fe`ac563d90 System.Threading.Tasks.Task..ctor(System.Delegate, System.Object, System.Threading.Tasks.Task, System.Threading.CancellationToken, System.Threading.Tasks.TaskCreationOptions, System.Threading.Tasks.InternalTaskOptions, System.Threading.Tasks.TaskScheduler)
+IL_0006: ldarg.1
+IL_0007: brtrue.s IL_0010
+000007fe`ac563dae 4885f6          test    rsi,rsi
+000007fe`ac563db1 0f8471674300    je      System_Private_CoreLib+0xb4a528 (000007fe`ac99a528)
+IL_0010: ldarg.3
+IL_0011: brfalse.s IL_0025
+000007fe`ac563db7 4885db          test    rbx,rbx
+000007fe`ac563dba 741a            je      System_Private_CoreLib+0x713dd6 (000007fe`ac563dd6)
+IL_0013: ldarg.s creationOptions
+IL_0015: ldc.i4.4
+IL_0016: and
+IL_0017: brfalse.s IL_0025
+IL_0019: ldarg.0
+IL_001a: call System.Threading.Tasks.Task/ContingentProperties System.Threading.Tasks.Task::EnsureContingentPropertiesInitializedUnsafe()
+IL_001f: ldarg.3
+IL_0020: stfld System.Threading.Tasks.Task System.Threading.Tasks.Task/ContingentProperties::m_parent
+000007fe`ac563dbc 41f6c604        test    r14b,4
+000007fe`ac563dc0 7414            je      System_Private_CoreLib+0x713dd6 (000007fe`ac563dd6)
+000007fe`ac563dc2 488bcf          mov     rcx,rdi
+000007fe`ac563dc5 e8d60e0000      call    System_Private_CoreLib+0x714ca0 (000007fe`ac564ca0)
+000007fe`ac563dca 488d4830        lea     rcx,[rax+30h]
+000007fe`ac563dce 488bd3          mov     rdx,rbx
+000007fe`ac563dd1 e83a02bcff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+IL_0025: ldarg.0
+IL_0026: ldarg.1
+IL_0027: ldarg.2
+IL_0028: ldarg.s cancellationToken
+IL_002a: ldarg.s creationOptions
+IL_002c: ldarg.s internalOptions
+IL_002e: ldarg.s scheduler
+IL_0030: call System.Void System.Threading.Tasks.Task::TaskConstructorCore(System.Delegate,System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions,System.Threading.Tasks.InternalTaskOptions,System.Threading.Tasks.TaskScheduler)
+000007fe`ac563dd6 4489742420      mov     dword ptr [rsp+20h],r14d
+000007fe`ac563ddb 8b9c24a0000000  mov     ebx,dword ptr [rsp+0A0h]
+000007fe`ac563de2 895c2428        mov     dword ptr [rsp+28h],ebx
+000007fe`ac563de6 488b9c24a8000000 mov     rbx,qword ptr [rsp+0A8h]
+000007fe`ac563dee 48895c2430      mov     qword ptr [rsp+30h],rbx
+000007fe`ac563df3 488bcf          mov     rcx,rdi
+000007fe`ac563df6 488bd6          mov     rdx,rsi
+000007fe`ac563df9 4c8bc5          mov     r8,rbp
+000007fe`ac563dfc 4c8b8c2490000000 mov     r9,qword ptr [rsp+90h]
+000007fe`ac563e04 e817000000      call    System_Private_CoreLib+0x713e20 (000007fe`ac563e20)
+IL_0035: ret
+000007fe`ac563e09 90              nop
+000007fe`ac563e0a 4883c440        add     rsp,40h
+000007fe`ac563e0e 5b              pop     rbx
+000007fe`ac563e0f 5d              pop     rbp
+000007fe`ac563e10 5e              pop     rsi
+000007fe`ac563e11 5f              pop     rdi
+000007fe`ac563e12 415e            pop     r14
+000007fe`ac563e14 c3              ret
+IL_0009: ldc.i4.s 20
+IL_000b: call System.Void System.ThrowHelper::ThrowArgumentNullException(System.ExceptionArgument)
+000007fe`ac563e15 cc              int     3
+000007fe`ac563e16 cc              int     3
+000007fe`ac563e17 cc              int     3
+000007fe`ac563e18 cc              int     3
+000007fe`ac563e19 cc              int     3
+000007fe`ac563e1a cc              int     3
+000007fe`ac563e1b cc              int     3
+000007fe`ac563e1c cc              int     3
+000007fe`ac563e1d cc              int     3
+000007fe`ac563e1e cc              int     3
+000007fe`ac563e1f cc              int     3
+000007fe`ac563e20 4157            push    r15
+000007fe`ac563e22 4156            push    r14
+000007fe`ac563e24 57              push    rdi
+000007fe`ac563e25 56              push    rsi
+000007fe`ac563e26 55              push    rbp
+000007fe`ac563e27 53              push    rbx
+000007fe`ac563e28 4883ec28        sub     rsp,28h
+000007fe`ac563e2c 488bf1          mov     rsi,rcx
+000007fe`ac563e2f 498bf8          mov     rdi,r8
+000007fe`ac563e32 498bd9          mov     rbx,r9
+
+000007fe`ac58f190 System.Threading.Tasks.TaskScheduler.get_Current()
+IL_0006: ldloc.0
+IL_0007: dup
+IL_0008: brtrue.s IL_0010
+IL_000a: pop
+IL_000b: call System.Threading.Tasks.TaskScheduler System.Threading.Tasks.TaskScheduler::get_Default()
+IL_0010: ret
+000007fe`ac58f19a 4885c0          test    rax,rax
+000007fe`ac58f19d 7518            jne     System_Private_CoreLib+0x73f1b7 (000007fe`ac58f1b7)
+000007fe`ac58f19f 488b0da2238cff  mov     rcx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+000007fe`ac58f1a6 baa3030000      mov     edx,3A3h
+000007fe`ac58f1ab e8d84eb9ff      call    System_Private_CoreLib+0x2d4088 (000007fe`ac124088)
+000007fe`ac58f1b0 488b8088090000  mov     rax,qword ptr [rax+988h]
+
+000007fe`ac564640 System.Threading.Tasks.Task.Start(System.Threading.Tasks.TaskScheduler)
+IL_0000: ldarg.0
+IL_0001: volatile.
+IL_0003: ldfld System.Int32 modreq(System.Runtime.CompilerServices.IsVolatile) System.Threading.Tasks.Task::m_stateFlags
+IL_0008: stloc.0
+IL_0009: ldloc.0
+IL_000a: call System.Boolean System.Threading.Tasks.Task::IsCompletedMethod(System.Int32)
+IL_000f: brfalse.s IL_0018
+000007fe`ac564648 8b4e34          mov     ecx,dword ptr [rsi+34h]
+000007fe`ac56464b f7c100006001    test    ecx,1600000h
+000007fe`ac564651 0f85e95e4300    jne     System_Private_CoreLib+0xb4a540 (000007fe`ac99a540)
+IL_0018: ldarg.1
+IL_0019: brtrue.s IL_0022
+000007fe`ac564657 4885d2          test    rdx,rdx
+000007fe`ac56465a 0f84eb5e4300    je      System_Private_CoreLib+0xb4a54b (000007fe`ac99a54b)
+000007fe`ac564660 81e1ffff0000    and     ecx,0FFFFh
+IL_0029: ldloc.1
+IL_002a: ldc.i4 1024
+IL_002f: and
+IL_0030: brfalse.s IL_0039
+000007fe`ac564666 f7c100040000    test    ecx,400h
+000007fe`ac56466c 0f85e45e4300    jne     System_Private_CoreLib+0xb4a556 (000007fe`ac99a556)
+IL_0039: ldloc.1
+IL_003a: ldc.i4 512
+IL_003f: and
+IL_0040: brfalse.s IL_0049
+000007fe`ac564672 f7c100020000    test    ecx,200h
+000007fe`ac564678 0f85e35e4300    jne     System_Private_CoreLib+0xb4a561 (000007fe`ac99a561)
+IL_0049: ldarg.0
+IL_004a: ldflda System.Threading.Tasks.TaskScheduler System.Threading.Tasks.Task::m_taskScheduler
+IL_004f: ldarg.1
+IL_0050: ldnull
+IL_0051: call T System.Threading.Interlocked::CompareExchange<System.Threading.Tasks.TaskScheduler>(T&,T,T)
+IL_0056: brfalse.s IL_005f
+000007fe`ac56467e 488d4e18        lea     rcx,[rsi+18h]
+000007fe`ac564682 4533c0          xor     r8d,r8d
+000007fe`ac564685 e836d8beff      call    System_Private_CoreLib+0x301ec0 (000007fe`ac151ec0)
+000007fe`ac56468a 4885c0          test    rax,rax
+000007fe`ac56468d 0f85d95e4300    jne     System_Private_CoreLib+0xb4a56c (000007fe`ac99a56c)
+IL_005f: ldarg.0
+IL_0060: ldc.i4.1
+IL_0061: call System.Void System.Threading.Tasks.Task::ScheduleAndStart(System.Boolean)
+IL_0066: ret
+000007fe`ac564693 488bce          mov     rcx,rsi
+000007fe`ac564696 ba01000000      mov     edx,1
+000007fe`ac56469b 488d051607bfff  lea     rax,[System_Private_CoreLib+0x304db8 (000007fe`ac154db8)]
+000007fe`ac5646a2 4883c420        add     rsp,20h
+000007fe`ac5646a6 5e              pop     rsi
+000007fe`ac5646a7 48ffe0          jmp     rax
+IL_0011: ldc.i4.s 64
+IL_0013: call System.Void System.ThrowHelper::ThrowInvalidOperationException(System.ExceptionResource)
+000007fe`ac5646aa cc              int     3
+000007fe`ac5646ab cc              int     3
+000007fe`ac5646ac cc              int     3
+000007fe`ac5646ad cc              int     3
+000007fe`ac5646ae cc              int     3
+000007fe`ac5646af cc              int     3
+000007fe`ac5646b0 56              push    rsi
+000007fe`ac5646b1 4883ec20        sub     rsp,20h
+IL_001b: ldc.i4.s 47
+IL_001d: call System.Void System.ThrowHelper::ThrowArgumentNullException(System.ExceptionArgument)
+IL_0022: ldloc.0
+IL_0023: call System.Threading.Tasks.TaskCreationOptions System.Threading.Tasks.Task::OptionsMethod(System.Int32)
+IL_0028: stloc.1
+000007fe`ac5646b5 488bf1          mov     rsi,rcx
+000007fe`ac5646b8 e8d3aa0200      call    System_Private_CoreLib+0x73f190 (000007fe`ac58f190)
+000007fe`ac5646bd 488bd0          mov     rdx,rax
+IL_0032: ldc.i4.s 65
+IL_0034: call System.Void System.ThrowHelper::ThrowInvalidOperationException(System.ExceptionResource)
+000007fe`ac5646c0 488bce          mov     rcx,rsi
+000007fe`ac5646c3 41b801000000    mov     r8d,1
+000007fe`ac5646c9 488d0540000000  lea     rax,[System_Private_CoreLib+0x714710 (000007fe`ac564710)]
+IL_0042: ldc.i4.s 66
+IL_0044: call System.Void System.ThrowHelper::ThrowInvalidOperationException(System.ExceptionResource)
+000007fe`ac5646cb 0540000000      add     eax,40h
+000007fe`ac5646d0 4883c420        add     rsp,20h
+000007fe`ac5646d4 5e              pop     rsi
+000007fe`ac5646d5 48ffe0          jmp     rax
+IL_0058: ldc.i4.s 67
+IL_005a: call System.Void System.ThrowHelper::ThrowInvalidOperationException(System.ExceptionResource)
+000007fe`ac5646d6 ffe0            jmp     rax
+000007fe`ac5646d8 cc              int     3
+000007fe`ac5646d9 cc              int     3
+000007fe`ac5646da cc              int     3
+000007fe`ac5646db cc              int     3
+000007fe`ac5646dc cc              int     3
+000007fe`ac5646dd cc              int     3
+000007fe`ac5646de cc              int     3
+000007fe`ac5646df cc              int     3
+000007fe`ac5646e0 4883ec28        sub     rsp,28h
+000007fe`ac5646e4 90              nop
+000007fe`ac5646e5 4885d2          test    rdx,rdx
+000007fe`ac5646e8 0f848a5e4300    je      System_Private_CoreLib+0xb4a578 (000007fe`ac99a578)
+000007fe`ac5646ee 41b801000000    mov     r8d,1
+000007fe`ac5646f4 488d0515000000  lea     rax,[System_Private_CoreLib+0x714710 (000007fe`ac564710)]
+
+000007fe`ac5667f0 System.Threading.Tasks.Task.Wait(Int32, System.Threading.CancellationToken)
+IL_0000: ldarg.1
+IL_0001: ldc.i4.m1
+IL_0002: bge.s IL_000b
+000007fe`ac5667fe 83faff          cmp     edx,0FFFFFFFFh
+000007fe`ac566801 0f8ccd3d4300    jl      System_Private_CoreLib+0xb4a5d4 (000007fe`ac99a5d4)
+000007fe`ac566807 8b4634          mov     eax,dword ptr [rsi+34h]
+000007fe`ac56680a 2500000011      and     eax,11000000h
+000007fe`ac56680f 3d00000001      cmp     eax,1000000h
+000007fe`ac566814 750c            jne     System_Private_CoreLib+0x716822 (000007fe`ac566822)
+IL_0013: ldc.i4.1
+IL_0014: ret
+000007fe`ac566816 b801000000      mov     eax,1
+000007fe`ac56681b 4883c428        add     rsp,28h
+000007fe`ac56681f 5e              pop     rsi
+000007fe`ac566820 5f              pop     rdi
+000007fe`ac566821 c3              ret
+IL_0015: ldarg.0
+IL_0016: ldarg.1
+IL_0017: ldarg.2
+IL_0018: call System.Boolean System.Threading.Tasks.Task::InternalWait(System.Int32,System.Threading.CancellationToken)
+IL_001d: brtrue.s IL_0021
+000007fe`ac566822 4c8b442450      mov     r8,qword ptr [rsp+50h]
+000007fe`ac566827 488bce          mov     rcx,rsi
+000007fe`ac56682a e851010000      call    System_Private_CoreLib+0x716980 (000007fe`ac566980)
+000007fe`ac56682f 85c0            test    eax,eax
+000007fe`ac566831 7509            jne     System_Private_CoreLib+0x71683c (000007fe`ac56683c)
+IL_001f: ldc.i4.0
+IL_0020: ret
+IL_0021: ldarg.0
+IL_0022: call System.Boolean System.Threading.Tasks.Task::get_IsWaitNotificationEnabledOrNotRanToCompletion()
+IL_0027: brfalse.s IL_0046
+IL_0029: ldarg.0
+IL_002a: call System.Boolean System.Threading.Tasks.Task::NotifyDebuggerOfWaitCompletionIfNecessary()
+IL_002f: pop
+IL_0030: ldarg.0
+IL_0031: call System.Boolean System.Threading.Tasks.Task::get_IsCanceled()
+IL_0036: brfalse.s IL_003f
+000007fe`ac566833 33c0            xor     eax,eax
+000007fe`ac566835 4883c428        add     rsp,28h
+000007fe`ac566839 5e              pop     rsi
+000007fe`ac56683a 5f              pop     rdi
+000007fe`ac56683b c3              ret
+000007fe`ac56683c 8b4e34          mov     ecx,dword ptr [rsi+34h]
+000007fe`ac56683f 81e100000011    and     ecx,11000000h
+000007fe`ac566845 81f900000001    cmp     ecx,1000000h
+000007fe`ac56684b 7457            je      System_Private_CoreLib+0x7168a4 (000007fe`ac5668a4)
+000007fe`ac56684d 488bce          mov     rcx,rsi
+000007fe`ac566850 e8dbdaffff      call    System_Private_CoreLib+0x714330 (000007fe`ac564330)
+000007fe`ac566855 8b4e34          mov     ecx,dword ptr [rsi+34h]
+000007fe`ac566858 81e100006000    and     ecx,600000h
+000007fe`ac56685e 81f900004000    cmp     ecx,400000h
+000007fe`ac566864 7525            jne     System_Private_CoreLib+0x71688b (000007fe`ac56688b)
+IL_0038: ldarga.s cancellationToken
+IL_003a: call System.Void System.Threading.CancellationToken::ThrowIfCancellationRequested()
+000007fe`ac566866 48837c245000    cmp     qword ptr [rsp+50h],0
+000007fe`ac56686c 741d            je      System_Private_CoreLib+0x71688b (000007fe`ac56688b)
+000007fe`ac56686e 488b4c2450      mov     rcx,qword ptr [rsp+50h]
+000007fe`ac566873 83792802        cmp     dword ptr [rcx+28h],2
+000007fe`ac566877 0f9dc1          setge   cl
+000007fe`ac56687a 0fb6c9          movzx   ecx,cl
+000007fe`ac56687d 85c9            test    ecx,ecx
+000007fe`ac56687f 740a            je      System_Private_CoreLib+0x71688b (000007fe`ac56688b)
+000007fe`ac566881 488d4c2450      lea     rcx,[rsp+50h]
+000007fe`ac566886 e835820200      call    System_Private_CoreLib+0x73eac0 (000007fe`ac58eac0)
+IL_003f: ldarg.0
+IL_0040: ldc.i4.1
+IL_0041: call System.Void System.Threading.Tasks.Task::ThrowIfExceptional(System.Boolean)
+000007fe`ac56688b 488bce          mov     rcx,rsi
+000007fe`ac56688e ba01000000      mov     edx,1
+000007fe`ac566893 e830e5beff      call    System_Private_CoreLib+0x304dc8 (000007fe`ac154dc8)
+000007fe`ac566898 488bf8          mov     rdi,rax
+000007fe`ac56689b 4885ff          test    rdi,rdi
+000007fe`ac56689e 0f853b3d4300    jne     System_Private_CoreLib+0xb4a5df (000007fe`ac99a5df)
+IL_0046: ldc.i4.1
+IL_0047: ret
+000007fe`ac5668a4 b801000000      mov     eax,1
+000007fe`ac5668a9 4883c428        add     rsp,28h
+000007fe`ac5668ad 5e              pop     rsi
+000007fe`ac5668ae 5f              pop     rdi
+000007fe`ac5668af c3              ret
+IL_0004: ldc.i4.s 49
+IL_0006: call System.Void System.ThrowHelper::ThrowArgumentOutOfRangeException(System.ExceptionArgument)
+IL_000b: ldarg.0
+IL_000c: call System.Boolean System.Threading.Tasks.Task::get_IsWaitNotificationEnabledOrNotRanToCompletion()
+IL_0011: brtrue.s IL_0015
+000007fe`ac5668b0 55              push    rbp
+000007fe`ac5668b1 57              push    rdi
+000007fe`ac5668b2 56              push    rsi
+000007fe`ac5668b3 4883ec30        sub     rsp,30h
+000007fe`ac5668b7 488d6c2440      lea     rbp,[rsp+40h]
+000007fe`ac5668bb 40              ???
+000007fe`ac5668bc 488965e0        mov     qword ptr [rbp-20h],rsp
+000007fe`ac5668c0 4883791800      cmp     qword ptr [rcx+18h],0
+000007fe`ac5668c5 750a            jne     System_Private_CoreLib+0x7168d1 (000007fe`ac5668d1)
+000007fe`ac5668c7 33c0            xor     eax,eax
+000007fe`ac5668c9 488d65f0        lea     rsp,[rbp-10h]
+000007fe`ac5668cd 5e              pop     rsi
+000007fe`ac5668ce 5f              pop     rdi
+000007fe`ac5668cf 5d              pop     rbp
+000007fe`ac5668d0 c3              ret
+000007fe`ac5668d1 48894d10        mov     qword ptr [rbp+10h],rcx
+000007fe`ac5668d5 488b4918        mov     rcx,qword ptr [rcx+18h]
+000007fe`ac5668d9 488b5510        mov     rdx,qword ptr [rbp+10h]
+
+000007fe`57c638c0 Asynchronic.BenchmarkTest+<>c__DisplayClass2_0.<ExecuteOnTask>b__0()
+IL_000b: ret
+000007fe`57c638c7 c3              ret
+
+No ILOffsetMap found
+Asynchronic.BenchmarkTest+<>c__DisplayClass2_0..ctor()
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+000007fe`57c43ad0 Asynchronic.BenchmarkTest.ExecuteOnThread()
+IL_0000: newobj System.Void Asynchronic.BenchmarkTest/<>c__DisplayClass3_0::.ctor()
+000007fe`57c43ad7 48b9b852d957fe070000 mov rcx,7FE57D952B8h
+000007fe`57c43ae1 e8ca78ad5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c43ae6 488bf0          mov     rsi,rax
+IL_0005: dup
+IL_0006: ldc.i4.0
+IL_0007: newobj System.Void System.Threading.AutoResetEvent::.ctor(System.Boolean)
+000007fe`57c43ae9 48b9882f8cacfe070000 mov rcx,offset System_Private_CoreLib+0xa72f88 (000007fe`ac8c2f88)
+000007fe`57c43af3 e8b878ad5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c43af8 488bf8          mov     rdi,rax
+000007fe`57c43afb 488bcf          mov     rcx,rdi
+000007fe`57c43afe 33d2            xor     edx,edx
+000007fe`57c43b00 4533c0          xor     r8d,r8d
+000007fe`57c43b03 4533c9          xor     r9d,r9d
+000007fe`57c43b06 e845949654      call    System_Private_CoreLib+0x75cf50 (000007fe`ac5acf50)
+IL_000c: stfld System.Threading.AutoResetEvent Asynchronic.BenchmarkTest/<>c__DisplayClass3_0::autoEvent
+IL_0011: dup
+IL_0012: ldc.i4.0
+IL_0013: stfld System.Int32 Asynchronic.BenchmarkTest/<>c__DisplayClass3_0::result
+IL_0018: dup
+IL_0019: ldftn System.Void Asynchronic.BenchmarkTest/<>c__DisplayClass3_0::<ExecuteOnThread>b__0()
+IL_001f: newobj System.Void System.Threading.ThreadStart::.ctor(System.Object,System.IntPtr)
+000007fe`57c43b0b 488d4e08        lea     rcx,[rsi+8]
+000007fe`57c43b0f 488bd7          mov     rdx,rdi
+000007fe`57c43b12 e8f963ad5f      call    coreclr!GC_Initialize+0x41280 (000007fe`b7719f10)
+000007fe`57c43b17 33c9            xor     ecx,ecx
+000007fe`57c43b19 894e10          mov     dword ptr [rsi+10h],ecx
+000007fe`57c43b1c 48b978f686acfe070000 mov rcx,offset System_Private_CoreLib+0xa1f678 (000007fe`ac86f678)
+000007fe`57c43b26 e88578ad5f      call    coreclr!GC_Initialize+0x42720 (000007fe`b771b3b0)
+000007fe`57c43b2b 488bf8          mov     rdi,rax
+000007fe`57c43b2e 488d4f08        lea     rcx,[rdi+8]
+000007fe`57c43b32 488bd6          mov     rdx,rsi
+000007fe`57c43b35 e8d663ad5f      call    coreclr!GC_Initialize+0x41280 (000007fe`b7719f10)
+000007fe`57c43b3a 48b9b829c457fe070000 mov rcx,7FE57C429B8h
+000007fe`57c43b44 48894f18        mov     qword ptr [rdi+18h],rcx
+IL_0024: newobj System.Void System.Threading.Thread::.ctor(System.Threading.ThreadStart)
+000007fe`57c43b48 48b96862d957fe070000 mov rcx,7FE57D96268h
+000007fe`57c43b52 e8c9e09f5f      call    coreclr!coreclr_shutdown_2+0x180f0 (000007fe`b7641c20)
+000007fe`57c43b57 488bd8          mov     rbx,rax
+000007fe`57c43b5a 488bcb          mov     rcx,rbx
+000007fe`57c43b5d 488bd7          mov     rdx,rdi
+000007fe`57c43b60 e87bfcffff      call    000007fe`57c437e0
+IL_0029: callvirt System.Void System.Threading.Thread::Start()
+000007fe`57c43b65 488b5308        mov     rdx,qword ptr [rbx+8]
+000007fe`57c43b69 8b0a            mov     ecx,dword ptr [rdx]
+000007fe`57c43b6b 48b9e8478aacfe070000 mov rcx,offset System_Private_CoreLib+0xa547e8 (000007fe`ac8a47e8)
+000007fe`57c43b75 48390a          cmp     qword ptr [rdx],rcx
+000007fe`57c43b78 740a            je      000007fe`57c43b84
+000007fe`57c43b7a e88161ad5f      call    coreclr!GC_Initialize+0x41070 (000007fe`b7719d00)
+000007fe`57c43b7f 488bc8          mov     rcx,rax
+000007fe`57c43b82 eb03            jmp     000007fe`57c43b87
+000007fe`57c43b84 488bca          mov     rcx,rdx
+000007fe`57c43b87 e8f41e8354      call    System_Private_CoreLib+0x625a80 (000007fe`ac475a80)
+IL_002e: dup
+IL_002f: ldfld System.Threading.AutoResetEvent Asynchronic.BenchmarkTest/<>c__DisplayClass3_0::autoEvent
+IL_0034: ldc.i4 2000
+IL_0039: callvirt System.Boolean System.Threading.WaitHandle::WaitOne(System.Int32)
+IL_003e: pop
+IL_003f: dup
+IL_0040: ldfld System.Threading.AutoResetEvent Asynchronic.BenchmarkTest/<>c__DisplayClass3_0::autoEvent
+IL_0045: callvirt System.Void System.Threading.WaitHandle::Close()
+000007fe`57c43b8c 488b4e08        mov     rcx,qword ptr [rsi+8]
+000007fe`57c43b90 448b01          mov     r8d,dword ptr [rcx]
+000007fe`57c43b93 440fb64118      movzx   r8d,byte ptr [rcx+18h]
+000007fe`57c43b98 488b4908        mov     rcx,qword ptr [rcx+8]
+000007fe`57c43b9c bad0070000      mov     edx,7D0h
+000007fe`57c43ba1 4533c9          xor     r9d,r9d
+000007fe`57c43ba4 e887c69854      call    System_Private_CoreLib+0x780230 (000007fe`ac5d0230)
+000007fe`57c43ba9 488b7e08        mov     rdi,qword ptr [rsi+8]
+000007fe`57c43bad 48837f0800      cmp     qword ptr [rdi+8],0
+000007fe`57c43bb2 740b            je      000007fe`57c43bbf
+000007fe`57c43bb4 488b4f08        mov     rcx,qword ptr [rdi+8]
+000007fe`57c43bb8 8b01            mov     eax,dword ptr [rcx]
+000007fe`57c43bba e871daa65f      call    coreclr!coreclr_shutdown_2+0x87b00 (000007fe`b76b1630)
+000007fe`57c43bbf 488bcf          mov     rcx,rdi
+000007fe`57c43bc2 e8c9478d54      call    System_Private_CoreLib+0x6c8390 (000007fe`ac518390)
+IL_004a: ldfld System.Int32 Asynchronic.BenchmarkTest/<>c__DisplayClass3_0::result
+IL_004f: ret
+000007fe`57c43bc7 8b4610          mov     eax,dword ptr [rsi+10h]
+
+000007fe`ac5acf50 System.Threading.EventWaitHandle..ctor(Boolean, System.Threading.EventResetMode, System.String)
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Threading.WaitHandle::.ctor()
+000007fe`ac5acf6b 33c9            xor     ecx,ecx
+000007fe`ac5acf6d 48894e08        mov     qword ptr [rsi+8],rcx
+000007fe`ac5acf71 488b0dd0458aff  mov     rcx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+000007fe`ac5acf78 ba24030000      mov     edx,324h
+000007fe`ac5acf7d e81e71b7ff      call    System_Private_CoreLib+0x2d40a0 (000007fe`ac1240a0)
+000007fe`ac5acf82 4c8b80a8080000  mov     r8,qword ptr [rax+8A8h]
+000007fe`ac5acf89 4c894610        mov     qword ptr [rsi+10h],r8
+000007fe`ac5acf8d c6461800        mov     byte ptr [rsi+18h],0
+IL_0006: ldarg.3
+IL_0007: brfalse.s IL_0036
+000007fe`ac5acf91 4885ff          test    rdi,rdi
+000007fe`ac5acf94 740d            je      System_Private_CoreLib+0x75cfa3 (000007fe`ac5acfa3)
+IL_0009: ldc.i4 260
+IL_000e: ldarg.3
+IL_000f: callvirt System.Int32 System.String::get_Length()
+IL_0014: bge.s IL_0036
+IL_0016: call System.String System.SR::get_Argument_WaitHandleNameTooLong()
+IL_001b: ldarg.3
+IL_001c: ldc.i4 260
+IL_0021: box System.Int32
+IL_0026: call System.String System.SR::Format(System.String,System.Object,System.Object)
+IL_002b: ldstr "name"
+IL_0030: newobj System.Void System.ArgumentException::.ctor(System.String,System.String)
+000007fe`ac5acf96 817f0804010000  cmp     dword ptr [rdi+8],104h
+000007fe`ac5acf9d 0f8f51333f00    jg      System_Private_CoreLib+0xb502f4 (000007fe`ac9a02f4)
+IL_0036: ldarg.1
+IL_0037: brtrue.s IL_003c
+000007fe`ac5acfa3 4584f6          test    r14b,r14b
+000007fe`ac5acfa6 7505            jne     System_Private_CoreLib+0x75cfad (000007fe`ac5acfad)
+IL_0039: ldc.i4.0
+IL_003a: br.s IL_003d
+000007fe`ac5acfa8 4533c0          xor     r8d,r8d
+000007fe`ac5acfab eb06            jmp     System_Private_CoreLib+0x75cfb3 (000007fe`ac5acfb3)
+IL_003c: ldc.i4.2
+IL_003d: stloc.0
+000007fe`ac5acfad 41b802000000    mov     r8d,2
+IL_003e: ldarg.2
+IL_003f: brfalse.s IL_005c
+000007fe`ac5acfb3 85db            test    ebx,ebx
+000007fe`ac5acfb5 740d            je      System_Private_CoreLib+0x75cfc4 (000007fe`ac5acfc4)
+IL_0041: ldarg.2
+IL_0042: ldc.i4.1
+IL_0043: bne.un.s IL_004b
+000007fe`ac5acfb7 83fb01          cmp     ebx,1
+000007fe`ac5acfba 0f85a1333f00    jne     System_Private_CoreLib+0xb50361 (000007fe`ac9a0361)
+IL_0045: ldloc.0
+IL_0046: ldc.i4.1
+IL_0047: or
+IL_0048: stloc.0
+IL_0049: br.s IL_005c
+IL_004b: call System.String System.SR::get_Argument_InvalidFlag()
+IL_0050: ldarg.3
+IL_0051: call System.String System.SR::Format(System.String,System.Object)
+IL_0056: newobj System.Void System.ArgumentException::.ctor(System.String)
+000007fe`ac5acfc0 4183c801        or      r8d,1
+IL_005c: ldnull
+IL_005d: ldarg.3
+IL_005e: ldloc.0
+IL_005f: ldc.i4 34603010
+IL_0064: call Microsoft.Win32.SafeHandles.SafeWaitHandle Microsoft.Win32.Win32Native::CreateEventEx(Microsoft.Win32.Win32Native/SECURITY_ATTRIBUTES,System.String,System.UInt32,System.UInt32)
+IL_0069: stloc.1
+000007fe`ac5acfc4 488bd7          mov     rdx,rdi
+000007fe`ac5acfc7 33c9            xor     ecx,ecx
+000007fe`ac5acfc9 41b902001002    mov     r9d,2100002h
+000007fe`ac5acfcf e84c7bbaff      call    System_Private_CoreLib+0x304b20 (000007fe`ac154b20)
+000007fe`ac5acfd4 488bd8          mov     rbx,rax
+IL_006a: ldloc.1
+IL_006b: callvirt System.Boolean System.Runtime.InteropServices.SafeHandle::get_IsInvalid()
+IL_0070: brfalse.s IL_00a6
+000007fe`ac5acfd7 488bcb          mov     rcx,rbx
+000007fe`ac5acfda 3909            cmp     dword ptr [rcx],ecx
+000007fe`ac5acfdc e80f07fbff      call    System_Private_CoreLib+0x70d6f0 (000007fe`ac55d6f0)
+000007fe`ac5acfe1 85c0            test    eax,eax
+000007fe`ac5acfe3 0f85b9333f00    jne     System_Private_CoreLib+0xb503a2 (000007fe`ac9a03a2)
+IL_00a6: ldarg.0
+IL_00a7: ldloc.1
+IL_00a8: call System.Void System.Threading.WaitHandle::SetHandleInternal(Microsoft.Win32.SafeHandles.SafeWaitHandle)
+000007fe`ac5acfe9 488d4e08        lea     rcx,[rsi+8]
+000007fe`ac5acfed 488bd3          mov     rdx,rbx
+000007fe`ac5acff0 e81b70b7ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+000007fe`ac5acff5 488b4b08        mov     rcx,qword ptr [rbx+8]
+000007fe`ac5acff9 48894e10        mov     qword ptr [rsi+10h],rcx
+IL_00ad: ret
+000007fe`ac5acffd 488d65e0        lea     rsp,[rbp-20h]
+000007fe`ac5ad001 5b              pop     rbx
+000007fe`ac5ad002 5e              pop     rsi
+000007fe`ac5ad003 5f              pop     rdi
+000007fe`ac5ad004 415e            pop     r14
+000007fe`ac5ad006 5d              pop     rbp
+000007fe`ac5ad007 c3              ret
+000007fe`ac5ad008 cc              int     3
+000007fe`ac5ad009 cc              int     3
+000007fe`ac5ad00a cc              int     3
+000007fe`ac5ad00b cc              int     3
+000007fe`ac5ad00c cc              int     3
+000007fe`ac5ad00d cc              int     3
+000007fe`ac5ad00e cc              int     3
+000007fe`ac5ad00f cc              int     3
+000007fe`ac5ad010 4883ec38        sub     rsp,38h
+000007fe`ac5ad014 90              nop
+000007fe`ac5ad015 488b442460      mov     rax,qword ptr [rsp+60h]
+000007fe`ac5ad01a 4889442420      mov     qword ptr [rsp+20h],rax
+000007fe`ac5ad01f 33c0            xor     eax,eax
+000007fe`ac5ad021 4889442428      mov     qword ptr [rsp+28h],rax
+000007fe`ac5ad026 0fb6d2          movzx   edx,dl
+000007fe`ac5ad029 e812000000      call    System_Private_CoreLib+0x75d040 (000007fe`ac5ad040)
+000007fe`ac5ad02e 90              nop
+000007fe`ac5ad02f 4883c438        add     rsp,38h
+000007fe`ac5ad033 c3              ret
+000007fe`ac5ad034 cc              int     3
+000007fe`ac5ad035 cc              int     3
+000007fe`ac5ad036 cc              int     3
+000007fe`ac5ad037 cc              int     3
+000007fe`ac5ad038 cc              int     3
+000007fe`ac5ad039 cc              int     3
+000007fe`ac5ad03a cc              int     3
+000007fe`ac5ad03b cc              int     3
+000007fe`ac5ad03c cc              int     3
+000007fe`ac5ad03d cc              int     3
+000007fe`ac5ad03e cc              int     3
+000007fe`ac5ad03f cc              int     3
+000007fe`ac5ad040 55              push    rbp
+000007fe`ac5ad041 4156            push    r14
+000007fe`ac5ad043 57              push    rdi
+000007fe`ac5ad044 56              push    rsi
+000007fe`ac5ad045 53              push    rbx
+000007fe`ac5ad046 4883ec20        sub     rsp,20h
+000007fe`ac5ad04a 488d6c2440      lea     rbp,[rsp+40h]
+000007fe`ac5ad04f 488bf1          mov     rsi,rcx
+000007fe`ac5ad052 448bf2          mov     r14d,edx
+000007fe`ac5ad055 418bd8          mov     ebx,r8d
+000007fe`ac5ad058 498bf9          mov     rdi,r9
+000007fe`ac5ad05b 33c9            xor     ecx,ecx
+000007fe`ac5ad05d 48894e08        mov     qword ptr [rsi+8],rcx
+000007fe`ac5ad061 488b0de0448aff  mov     rcx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+000007fe`ac5ad068 ba24030000      mov     edx,324h
+IL_0035: throw
+000007fe`ac5ad06d e82e70b7ff      call    System_Private_CoreLib+0x2d40a0 (000007fe`ac1240a0)
+000007fe`ac5ad072 488b88a8080000  mov     rcx,qword ptr [rax+8A8h]
+000007fe`ac5ad079 48894e10        mov     qword ptr [rsi+10h],rcx
+000007fe`ac5ad07d c6461800        mov     byte ptr [rsi+18h],0
+000007fe`ac5ad081 4885ff          test    rdi,rdi
+000007fe`ac5ad084 740d            je      System_Private_CoreLib+0x75d093 (000007fe`ac5ad093)
+000007fe`ac5ad086 817f0804010000  cmp     dword ptr [rdi+8],104h
+000007fe`ac5ad08d 0f8f85333f00    jg      System_Private_CoreLib+0xb50418 (000007fe`ac9a0418)
+000007fe`ac5ad093 4584f6          test    r14b,r14b
+000007fe`ac5ad096 7504            jne     System_Private_CoreLib+0x75d09c (000007fe`ac5ad09c)
+000007fe`ac5ad098 33c9            xor     ecx,ecx
+000007fe`ac5ad09a eb05            jmp     System_Private_CoreLib+0x75d0a1 (000007fe`ac5ad0a1)
+000007fe`ac5ad09c b902000000      mov     ecx,2
+000007fe`ac5ad0a1 448bc1          mov     r8d,ecx
+000007fe`ac5ad0a4 85db            test    ebx,ebx
+000007fe`ac5ad0a6 740d            je      System_Private_CoreLib+0x75d0b5 (000007fe`ac5ad0b5)
+000007fe`ac5ad0a8 83fb01          cmp     ebx,1
+000007fe`ac5ad0ab 0f85d4333f00    jne     System_Private_CoreLib+0xb50485 (000007fe`ac9a0485)
+IL_005b: throw
+000007fe`ac5ad0ae 333f            xor     edi,dword ptr [rdi]
+000007fe`ac5ad0b0 004183          add     byte ptr [rcx-7Dh],al
+000007fe`ac5ad0b3 c80133c9        enter   3301h,0C9h
+IL_0072: call System.Int32 System.Runtime.InteropServices.Marshal::GetLastWin32Error()
+IL_0077: stloc.2
+000007fe`ac5ad0b6 c9              leave
+000007fe`ac5ad0b7 488bd7          mov     rdx,rdi
+000007fe`ac5ad0ba 41b902001002    mov     r9d,2100002h
+IL_0078: ldloc.1
+IL_0079: callvirt System.Void System.Runtime.InteropServices.SafeHandle::SetHandleAsInvalid()
+000007fe`ac5ad0bd 0010            add     byte ptr [rax],dl
+000007fe`ac5ad0bf 02e8            add     ch,al
+000007fe`ac5ad0c1 5b              pop     rbx
+000007fe`ac5ad0c2 7aba            jp      System_Private_CoreLib+0x75d07e (000007fe`ac5ad07e)
+000007fe`ac5ad0c4 ff488b          dec     dword ptr [rax-75h]
+IL_007e: ldarg.3
+IL_007f: brfalse.s IL_009e
+000007fe`ac5ad0c5 488bd8          mov     rbx,rax
+000007fe`ac5ad0c8 e8535dbaff      call    System_Private_CoreLib+0x302e20 (000007fe`ac152e20)
+IL_0081: ldarg.3
+IL_0082: callvirt System.Int32 System.String::get_Length()
+IL_0087: brfalse.s IL_009e
+000007fe`ac5ad0ca 5d              pop     rbp
+000007fe`ac5ad0cb baff448bf0      mov     edx,0F08B44FFh
+IL_0089: ldc.i4.6
+IL_008a: ldloc.2
+IL_008b: bne.un.s IL_009e
+IL_008d: call System.String System.SR::get_Threading_WaitHandleCannotBeOpenedException_InvalidHandle()
+IL_0092: ldarg.3
+IL_0093: call System.String System.SR::Format(System.String,System.Object)
+IL_0098: newobj System.Void System.Threading.WaitHandleCannotBeOpenedException::.ctor(System.String)
+000007fe`ac5ad0d0 488bcb          mov     rcx,rbx
+000007fe`ac5ad0d3 3909            cmp     dword ptr [rcx],ecx
+000007fe`ac5ad0d5 e81606fbff      call    System_Private_CoreLib+0x70d6f0 (000007fe`ac55d6f0)
+000007fe`ac5ad0da 85c0            test    eax,eax
+000007fe`ac5ad0dc 0f85e4333f00    jne     System_Private_CoreLib+0xb504c6 (000007fe`ac9a04c6)
+000007fe`ac5ad0e2 4181feb7000000  cmp     r14d,0B7h
+000007fe`ac5ad0e9 0f95c2          setne   dl
+000007fe`ac5ad0ec 488b7d30        mov     rdi,qword ptr [rbp+30h]
+000007fe`ac5ad0f0 8817            mov     byte ptr [rdi],dl
+000007fe`ac5ad0f2 488d4e08        lea     rcx,[rsi+8]
+000007fe`ac5ad0f6 488bd3          mov     rdx,rbx
+000007fe`ac5ad0f9 e8126fb7ff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+000007fe`ac5ad0fe 488b4b08        mov     rcx,qword ptr [rbx+8]
+000007fe`ac5ad102 48894e10        mov     qword ptr [rsi+10h],rcx
+000007fe`ac5ad106 488d65e0        lea     rsp,[rbp-20h]
+000007fe`ac5ad10a 5b              pop     rbx
+000007fe`ac5ad10b 5e              pop     rsi
+000007fe`ac5ad10c 5f              pop     rdi
+000007fe`ac5ad10d 415e            pop     r14
+IL_009d: throw
+000007fe`ac5ad10e 5e              pop     rsi
+000007fe`ac5ad10f 5d              pop     rbp
+000007fe`ac5ad110 c3              ret
+000007fe`ac5ad111 cc              int     3
+000007fe`ac5ad112 cc              int     3
+000007fe`ac5ad113 cc              int     3
+000007fe`ac5ad114 cc              int     3
+000007fe`ac5ad115 cc              int     3
+IL_009e: ldloc.2
+IL_009f: ldarg.3
+IL_00a0: call System.Exception System.IO.Win32Marshal::GetExceptionForWin32Error(System.Int32,System.String)
+IL_00a5: throw
+000007fe`ac5ad116 cc              int     3
+000007fe`ac5ad117 cc              int     3
+000007fe`ac5ad118 cc              int     3
+000007fe`ac5ad119 cc              int     3
+000007fe`ac5ad11a cc              int     3
+000007fe`ac5ad11b cc              int     3
+000007fe`ac5ad11c cc              int     3
+000007fe`ac5ad11d cc              int     3
+000007fe`ac5ad11e cc              int     3
+000007fe`ac5ad11f cc              int     3
+000007fe`ac5ad120 57              push    rdi
+000007fe`ac5ad121 56              push    rsi
+000007fe`ac5ad122 4883ec28        sub     rsp,28h
+000007fe`ac5ad126 488bf1          mov     rsi,rcx
+000007fe`ac5ad129 488bfa          mov     rdi,rdx
+000007fe`ac5ad12c 33c9            xor     ecx,ecx
+000007fe`ac5ad12e 48894e08        mov     qword ptr [rsi+8],rcx
+000007fe`ac5ad132 488b0d0f448aff  mov     rcx,qword ptr [System_Private_CoreLib+0x1548 (000007fe`abe51548)]
+
+000007fe`d9a06d40 System.Threading.Thread..ctor(System.Threading.ThreadStart)
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Runtime.ConstrainedExecution.CriticalFinalizerObject::.ctor()
+000007fe`d9a06d4d 488bce          mov     rcx,rsi
+000007fe`d9a06d50 ff15caa3ffff    call    qword ptr [System_Threading_Thread+0x1120 (000007fe`d9a01120)]
+IL_0006: ldarg.1
+IL_0007: brtrue.s IL_0014
+000007fe`d9a06d56 4885ff          test    rdi,rdi
+000007fe`d9a06d59 7450            je      System_Threading_Thread+0x6dab (000007fe`d9a06dab)
+IL_0014: ldarg.0
+IL_0015: ldarg.0
+IL_0016: ldftn System.Void System.Threading.Thread::ThreadMain_ThreadStart()
+IL_001c: newobj System.Void System.Threading.ThreadStart::.ctor(System.Object,System.IntPtr)
+000007fe`d9a06d5b ff151fa3ffff    call    qword ptr [System_Threading_Thread+0x1080 (000007fe`d9a01080)]
+000007fe`d9a06d61 488bd8          mov     rbx,rax
+000007fe`d9a06d64 488bcb          mov     rcx,rbx
+000007fe`d9a06d67 488bd6          mov     rdx,rsi
+000007fe`d9a06d6a ff1518a3ffff    call    qword ptr [System_Threading_Thread+0x1088 (000007fe`d9a01088)]
+IL_0021: call Internal.Runtime.Augments.RuntimeThread Internal.Runtime.Augments.RuntimeThread::Create(System.Threading.ThreadStart)
+IL_0026: stfld Internal.Runtime.Augments.RuntimeThread System.Threading.Thread::_runtimeThread
+000007fe`d9a06d70 488bcb          mov     rcx,rbx
+000007fe`d9a06d73 ff15afa3ffff    call    qword ptr [System_Threading_Thread+0x1128 (000007fe`d9a01128)]
+000007fe`d9a06d79 488b1598a5ffff  mov     rdx,qword ptr [System_Threading_Thread+0x1318 (000007fe`d9a01318)]
+000007fe`d9a06d80 488d0c16        lea     rcx,[rsi+rdx]
+000007fe`d9a06d84 488bd0          mov     rdx,rax
+000007fe`d9a06d87 ff1583a2ffff    call    qword ptr [System_Threading_Thread+0x1010 (000007fe`d9a01010)]
+IL_002b: ldarg.0
+IL_002c: ldarg.1
+IL_002d: stfld System.Delegate System.Threading.Thread::_start
+000007fe`d9a06d8d 488b1584a5ffff  mov     rdx,qword ptr [System_Threading_Thread+0x1318 (000007fe`d9a01318)]
+000007fe`d9a06d94 488d4c1608      lea     rcx,[rsi+rdx+8]
+000007fe`d9a06d99 488bd7          mov     rdx,rdi
+000007fe`d9a06d9c ff156ea2ffff    call    qword ptr [System_Threading_Thread+0x1010 (000007fe`d9a01010)]
+IL_0032: ret
+000007fe`d9a06da2 90              nop
+000007fe`d9a06da3 4883c420        add     rsp,20h
+000007fe`d9a06da7 5b              pop     rbx
+000007fe`d9a06da8 5e              pop     rsi
+000007fe`d9a06da9 5f              pop     rdi
+000007fe`d9a06daa c3              ret
+IL_0009: ldstr "start"
+IL_000e: newobj System.Void System.ArgumentNullException::.ctor(System.String)
+000007fe`d9a06dab ff15c7a2ffff    call    qword ptr [System_Threading_Thread+0x1078 (000007fe`d9a01078)]
+000007fe`d9a06db1 488bf0          mov     rsi,rax
+000007fe`d9a06db4 b961020000      mov     ecx,261h
+000007fe`d9a06db9 e8f9b9ffff      call    System_Threading_Thread+0x27b7 (000007fe`d9a027b7)
+000007fe`d9a06dbe 488bd0          mov     rdx,rax
+000007fe`d9a06dc1 488bce          mov     rcx,rsi
+000007fe`d9a06dc4 ff154ea3ffff    call    qword ptr [System_Threading_Thread+0x1118 (000007fe`d9a01118)]
+IL_0013: throw
+000007fe`d9a06dca 488bce          mov     rcx,rsi
+000007fe`d9a06dcd e8dfb9ffff      call    System_Threading_Thread+0x27b1 (000007fe`d9a027b1)
+000007fe`d9a06dd2 cc              int     3
+000007fe`d9a06dd3 cc              int     3
+000007fe`d9a06dd4 cc              int     3
+000007fe`d9a06dd5 cc              int     3
+000007fe`d9a06dd6 cc              int     3
+000007fe`d9a06dd7 cc              int     3
+000007fe`d9a06dd8 cc              int     3
+000007fe`d9a06dd9 cc              int     3
+000007fe`d9a06dda cc              int     3
+000007fe`d9a06ddb cc              int     3
+000007fe`d9a06ddc cc              int     3
+000007fe`d9a06ddd cc              int     3
+000007fe`d9a06dde cc              int     3
+000007fe`d9a06ddf cc              int     3
+000007fe`d9a06de0 57              push    rdi
+000007fe`d9a06de1 56              push    rsi
+000007fe`d9a06de2 55              push    rbp
+000007fe`d9a06de3 53              push    rbx
+000007fe`d9a06de4 4883ec28        sub     rsp,28h
+000007fe`d9a06de8 488bf1          mov     rsi,rcx
+
+000007fe`ac475a80 System.Threading.Thread.Start()
+IL_0000: ldarg.0
+IL_0001: call System.Void System.Threading.Thread::StartupSetApartmentStateInternal()
+000007fe`ac475a89 488bce          mov     rcx,rsi
+000007fe`ac475a8c e8f78fcdff      call    System_Private_CoreLib+0x2fea88 (000007fe`ac14ea88)
+IL_0006: ldarg.0
+IL_0007: ldfld System.Delegate System.Threading.Thread::m_Delegate
+IL_000c: brfalse.s IL_002c
+000007fe`ac475a91 48837e2000      cmp     qword ptr [rsi+20h],0
+000007fe`ac475a96 743e            je      System_Private_CoreLib+0x625ad6 (000007fe`ac475ad6)
+IL_000e: ldarg.0
+IL_000f: ldfld System.Delegate System.Threading.Thread::m_Delegate
+IL_0014: callvirt System.Object System.Delegate::get_Target()
+IL_0019: castclass System.Threading.ThreadHelper
+IL_001e: stloc.0
+IL_001f: call System.Threading.ExecutionContext System.Threading.ExecutionContext::Capture()
+IL_0024: stloc.1
+000007fe`ac475a98 488b4e20        mov     rcx,qword ptr [rsi+20h]
+000007fe`ac475a9c 488b01          mov     rax,qword ptr [rcx]
+000007fe`ac475a9f 488b4048        mov     rax,qword ptr [rax+48h]
+000007fe`ac475aa3 ff5018          call    qword ptr [rax+18h]
+000007fe`ac475aa6 488bd0          mov     rdx,rax
+000007fe`ac475aa9 488bfa          mov     rdi,rdx
+000007fe`ac475aac 4885ff          test    rdi,rdi
+000007fe`ac475aaf 7414            je      System_Private_CoreLib+0x625ac5 (000007fe`ac475ac5)
+000007fe`ac475ab1 488d0d58fd4200  lea     rcx,[System_Private_CoreLib+0xa55810 (000007fe`ac8a5810)]
+000007fe`ac475ab8 48390f          cmp     qword ptr [rdi],rcx
+000007fe`ac475abb 7408            je      System_Private_CoreLib+0x625ac5 (000007fe`ac475ac5)
+000007fe`ac475abd e896e5caff      call    System_Private_CoreLib+0x2d4058 (000007fe`ac124058)
+000007fe`ac475ac2 488bf8          mov     rdi,rax
+000007fe`ac475ac5 e8b6c20300      call    System_Private_CoreLib+0x661d80 (000007fe`ac4b1d80)
+IL_0025: ldloc.0
+IL_0026: ldloc.1
+IL_0027: callvirt System.Void System.Threading.ThreadHelper::SetExecutionContextHelper(System.Threading.ExecutionContext)
+000007fe`ac475aca 488d4f18        lea     rcx,[rdi+18h]
+000007fe`ac475ace 488bd0          mov     rdx,rax
+000007fe`ac475ad1 e83ae5caff      call    System_Private_CoreLib+0x2d4010 (000007fe`ac124010)
+IL_002c: ldarg.0
+IL_002d: call System.Void System.Threading.Thread::StartInternal()
+IL_0032: ret
+000007fe`ac475ad6 488bce          mov     rcx,rsi
+000007fe`ac475ad9 488d05c08fcdff  lea     rax,[System_Private_CoreLib+0x2feaa0 (000007fe`ac14eaa0)]
+
+000007fe`ac5d0230 System.Threading.WaitHandle.InternalWaitOne(System.Runtime.InteropServices.SafeHandle, Int64, Boolean, Boolean)
+IL_0000: ldarg.0
+IL_0001: brtrue.s IL_000f
+IL_0003: ldnull
+IL_0004: call System.String System.SR::get_ObjectDisposed_Generic()
+IL_0009: newobj System.Void System.ObjectDisposedException::.ctor(System.String,System.String)
+000007fe`ac5d0235 4885c9          test    rcx,rcx
+000007fe`ac5d0238 0f8422263d00    je      System_Private_CoreLib+0xb52860 (000007fe`ac9a2860)
+IL_000f: ldarg.0
+IL_0010: ldarg.1
+IL_0011: conv.u4
+IL_0012: ldarg.2
+IL_0013: ldarg.3
+IL_0014: call System.Int32 System.Threading.WaitHandle::WaitOneNative(System.Runtime.InteropServices.SafeHandle,System.UInt32,System.Boolean,System.Boolean)
+IL_0019: stloc.0
+000007fe`ac5d023e 450fb6c0        movzx   r8d,r8b
+000007fe`ac5d0242 450fb6c9        movzx   r9d,r9b
+000007fe`ac5d0246 e8fd5cb8ff      call    System_Private_CoreLib+0x305f48 (000007fe`ac155f48)
+IL_001a: ldloc.0
+IL_001b: ldc.i4 128
+IL_0020: bne.un.s IL_0027
+000007fe`ac5d024b 3d80000000      cmp     eax,80h
+000007fe`ac5d0250 0f8442263d00    je      System_Private_CoreLib+0xb52898 (000007fe`ac9a2898)
+IL_0027: ldloc.0
+IL_0028: ldc.i4 258
+IL_002d: ceq
+IL_002f: ldc.i4.0
+IL_0030: ceq
+IL_0032: ret
+000007fe`ac5d0256 3d02010000      cmp     eax,102h
+000007fe`ac5d025b 0f95c0          setne   al
+000007fe`ac5d025e 0fb6c0          movzx   eax,al
+000007fe`ac5d0261 4883c420        add     rsp,20h
+000007fe`ac5d0265 5e              pop     rsi
+000007fe`ac5d0266 c3              ret
+000007fe`ac5d0267 cc              int     3
+000007fe`ac5d0268 cc              int     3
+000007fe`ac5d0269 cc              int     3
+000007fe`ac5d026a cc              int     3
+000007fe`ac5d026b cc              int     3
+000007fe`ac5d026c cc              int     3
+000007fe`ac5d026d cc              int     3
+000007fe`ac5d026e cc              int     3
+000007fe`ac5d026f cc              int     3
+000007fe`ac5d0270 56              push    rsi
+000007fe`ac5d0271 4883ec20        sub     rsp,20h
+000007fe`ac5d0275 4883790800      cmp     qword ptr [rcx+8],0
+000007fe`ac5d027a 0f8420263d00    je      System_Private_CoreLib+0xb528a0 (000007fe`ac9a28a0)
+000007fe`ac5d0280 440fb64118      movzx   r8d,byte ptr [rcx+18h]
+000007fe`ac5d0285 488b4908        mov     rcx,qword ptr [rcx+8]
+000007fe`ac5d0289 baffffffff      mov     edx,0FFFFFFFFh
+000007fe`ac5d028e 4533c9          xor     r9d,r9d
+000007fe`ac5d0291 e8b25cb8ff      call    System_Private_CoreLib+0x305f48 (000007fe`ac155f48)
+000007fe`ac5d0296 3d80000000      cmp     eax,80h
+IL_000e: throw
+000007fe`ac5d0297 800000          add     byte ptr [rax],0
+000007fe`ac5d029a 000f            add     byte ptr [rdi],cl
+000007fe`ac5d029c 8437            test    byte ptr [rdi],dh
+000007fe`ac5d029e 263d003d0201    cmp     eax,1023D00h
+IL_0022: call System.Void System.Threading.WaitHandle::ThrowAbandonedMutexException()
+000007fe`ac5d029f 3d003d0201      cmp     eax,1023D00h
+000007fe`ac5d02a4 0000            add     byte ptr [rax],al
+000007fe`ac5d02a6 0f95c0          setne   al
+000007fe`ac5d02a9 0fb6c0          movzx   eax,al
+000007fe`ac5d02ac 4883c420        add     rsp,20h
+000007fe`ac5d02b0 5e              pop     rsi
+000007fe`ac5d02b1 c3              ret
+000007fe`ac5d02b2 cc              int     3
+000007fe`ac5d02b3 cc              int     3
+000007fe`ac5d02b4 cc              int     3
+000007fe`ac5d02b5 cc              int     3
+000007fe`ac5d02b6 cc              int     3
+000007fe`ac5d02b7 cc              int     3
+000007fe`ac5d02b8 cc              int     3
+000007fe`ac5d02b9 cc              int     3
+000007fe`ac5d02ba cc              int     3
+000007fe`ac5d02bb cc              int     3
+000007fe`ac5d02bc cc              int     3
+000007fe`ac5d02bd cc              int     3
+000007fe`ac5d02be cc              int     3
+
+000007fe`ac518390 System.GC.SuppressFinalize(System.Object)
+IL_0000: ldarg.0
+IL_0001: brtrue.s IL_000e
+000007fe`ac518395 4885c9          test    rcx,rcx
+000007fe`ac518398 0f84eeb34700    je      System_Private_CoreLib+0xb4378c (000007fe`ac99378c)
+IL_000e: ldarg.0
+IL_000f: call System.Void System.GC::_SuppressFinalize(System.Object)
+IL_0014: ret
+000007fe`ac51839e 488d05f3b8c3ff  lea     rax,[System_Private_CoreLib+0x303c98 (000007fe`ac153c98)]
+000007fe`ac5183a5 4883c420        add     rsp,20h
+000007fe`ac5183a9 5e              pop     rsi
+000007fe`ac5183aa 48ffe0          jmp     rax
+IL_0003: ldstr "obj"
+IL_0008: newobj System.Void System.ArgumentNullException::.ctor(System.String)
+000007fe`ac5183ad cc              int     3
+000007fe`ac5183ae cc              int     3
+000007fe`ac5183af cc              int     3
+000007fe`ac5183b0 56              push    rsi
+000007fe`ac5183b1 4883ec20        sub     rsp,20h
+000007fe`ac5183b5 4885c9          test    rcx,rcx
+000007fe`ac5183b8 0f84feb34700    je      System_Private_CoreLib+0xb437bc (000007fe`ac9937bc)
+000007fe`ac5183be 488d05e3b8c3ff  lea     rax,[System_Private_CoreLib+0x303ca8 (000007fe`ac153ca8)]
+000007fe`ac5183c5 4883c420        add     rsp,20h
+000007fe`ac5183c9 5e              pop     rsi
+000007fe`ac5183ca 48ffe0          jmp     rax
+000007fe`ac5183cd cc              int     3
+000007fe`ac5183ce cc              int     3
+000007fe`ac5183cf cc              int     3
+000007fe`ac5183d0 55              push    rbp
+IL_000d: throw
+000007fe`ac5183d1 4157            push    r15
+000007fe`ac5183d3 4156            push    r14
+000007fe`ac5183d5 4155            push    r13
+000007fe`ac5183d7 4154            push    r12
+000007fe`ac5183d9 57              push    rdi
+000007fe`ac5183da 56              push    rsi
+000007fe`ac5183db 53              push    rbx
+000007fe`ac5183dc 4883ec68        sub     rsp,68h
+000007fe`ac5183e0 488dac24a0000000 lea     rbp,[rsp+0A0h]
+000007fe`ac5183e8 8bf1            mov     esi,ecx
+000007fe`ac5183ea 488d4d90        lea     rcx,[rbp-70h]
+000007fe`ac5183ee 498bd2          mov     rdx,r10
+
+000007fe`ac6e1170 System.Threading.AutoResetEvent..ctor(Boolean)
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: ldc.i4.0
+IL_0003: call System.Void System.Threading.EventWaitHandle::.ctor(System.Boolean,System.Threading.EventResetMode)
+IL_0008: ret
+000007fe`ac6e1175 0fb6d2          movzx   edx,dl
+000007fe`ac6e1178 4533c0          xor     r8d,r8d
+000007fe`ac6e117b 4533c9          xor     r9d,r9d
+000007fe`ac6e117e 488d05cbbdecff  lea     rax,[System_Private_CoreLib+0x75cf50 (000007fe`ac5acf50)]
+
+000007fe`57c43bf0 Asynchronic.BenchmarkTest+<>c__DisplayClass3_0.<ExecuteOnThread>b__0()
+IL_0017: ret
+000007fe`57c43c06 90              nop
+
+000007fe`ac5d01c0 System.Threading.WaitHandle.WaitOne(Int32)
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: ldc.i4.0
+IL_0003: callvirt System.Boolean System.Threading.WaitHandle::WaitOne(System.Int32,System.Boolean)
+IL_0008: ret
+000007fe`ac5d01c5 4533c0          xor     r8d,r8d
+000007fe`ac5d01c8 488b01          mov     rax,qword ptr [rcx]
+000007fe`ac5d01cb 488b4040        mov     rax,qword ptr [rax+40h]
+000007fe`ac5d01cf 488b4038        mov     rax,qword ptr [rax+38h]
+
+000007fe`ac5d0710 System.Threading.WaitHandle.Close()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.1
+IL_0002: callvirt System.Void System.Threading.WaitHandle::Dispose(System.Boolean)
+000007fe`ac5d0718 488bce          mov     rcx,rsi
+000007fe`ac5d071b ba01000000      mov     edx,1
+000007fe`ac5d0720 488b06          mov     rax,qword ptr [rsi]
+000007fe`ac5d0723 488b4048        mov     rax,qword ptr [rax+48h]
+000007fe`ac5d0727 ff5028          call    qword ptr [rax+28h]
+IL_0007: ldarg.0
+IL_0008: call System.Void System.GC::SuppressFinalize(System.Object)
+IL_000d: ret
+000007fe`ac5d072a 488bce          mov     rcx,rsi
+000007fe`ac5d072d 488d055c7cf4ff  lea     rax,[System_Private_CoreLib+0x6c8390 (000007fe`ac518390)]
+
+No ILOffsetMap found
+System.Runtime.InteropServices.SafeHandle.InternalDispose()
+Asynchronic.BenchmarkTest+<>c__DisplayClass3_0..ctor()
+
+</code></pre></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
